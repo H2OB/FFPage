@@ -143,9 +143,9 @@
     
     self.isUpdateFrame = YES;
     
-    [UIView animateWithDuration:animation ? .2 :CGFLOAT_MIN animations:^{
+    [UIView animateWithDuration:animation ? .3 :CGFLOAT_MIN animations:^{
         
-        [self.view setNeedsLayout];
+        [self viewDidLayoutSubviews];
         
     } completion:^(BOOL finished) {
         

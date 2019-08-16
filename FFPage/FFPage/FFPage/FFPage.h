@@ -19,4 +19,13 @@
 #define FFPageBeginRefreshNotice @"FFPageBeginRefreshNotice"
 #define FFPageEndRefreshNotice   @"FFPageEndRefreshNotice"
 
+
+NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
+    
+    NSUInteger value = arc4random() % end + begin;
+    if(value > end) value -= begin;
+    return value;
+    
+}
+
 #endif /* FFPage_h */

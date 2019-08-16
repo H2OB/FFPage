@@ -88,11 +88,13 @@ static NSString *  PanState = @"state";
 
 - (void)removeKVO{
     
-    [self.scrollView removeObserver:self forKeyPath:PanState];
+    [self.scrollView.panGestureRecognizer removeObserver:self forKeyPath:PanState];
     
-    [self.scrollView.panGestureRecognizer removeObserver:self forKeyPath:contentOffset];
+    [self.scrollView removeObserver:self forKeyPath:contentOffset];
     
     if (self.isFooter) [self.scrollView removeObserver:self forKeyPath:contentSize];
+    
+    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{

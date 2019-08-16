@@ -11,13 +11,7 @@
 #import "FFPage.h"
 #import "RefreshView.h"
 
-NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
-    
-    NSUInteger value = arc4random() % end + begin;
-    if(value > end) value -= begin;
-    return value;
-    
-}
+
 
 @interface TableViewController ()<FFPageProtocol>
 
@@ -76,10 +70,9 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TableViewCell" forIndexPath:indexPath];
-    
-    cell.backgroundColor = [UIColor colorWithRed:randomBetween(1, 255)/255.0 green:randomBetween(1, 255)/255.0 blue:randomBetween(1, 255)/255.0 alpha:randomBetween(1, 255)/255.0];
-    
+
     return cell;
 }
 
@@ -87,8 +80,7 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    [self.tableView.header beginRefresh];
-    
+
 }
 
 

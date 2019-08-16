@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A90FEFA58E222BC23F6BF34 /* libPods-FFPage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BF4E96453C22BCAD88F971 /* libPods-FFPage.a */; };
 		714E73A622FD5CF900040C42 /* FFHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 714E73A522FD5CF900040C42 /* FFHomePageViewController.m */; };
 		714E73AB22FD5DB700040C42 /* UIScrollView+FFPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 714E73AA22FD5DB700040C42 /* UIScrollView+FFPage.m */; };
 		714E73AE22FD5E1800040C42 /* FFDynamicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 714E73AD22FD5E1800040C42 /* FFDynamicItem.m */; };
@@ -18,6 +19,7 @@
 		716C839222F8119D00BD5D67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 716C839022F8119D00BD5D67 /* LaunchScreen.storyboard */; };
 		716C839522F8119D00BD5D67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C839422F8119D00BD5D67 /* main.m */; };
 		716C839E22F811C300BD5D67 /* FFPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C839D22F811C300BD5D67 /* FFPageViewController.m */; };
+		71DC94DD2306D1EF0058F51C /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DC94DC2306D1EF0058F51C /* TabViewController.m */; };
 		71DCC51622FD829F00A34C00 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DCC51522FD829F00A34C00 /* HomePageViewController.m */; };
 		71DCC51922FD82B500A34C00 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71DCC51822FD82B500A34C00 /* PageViewController.m */; };
 		71F1413022FBF8B1000715A0 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F1412F22FBF8B1000715A0 /* TableViewController.m */; };
@@ -46,12 +48,17 @@
 		716C839C22F811C300BD5D67 /* FFPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFPageViewController.h; sourceTree = "<group>"; };
 		716C839D22F811C300BD5D67 /* FFPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFPageViewController.m; sourceTree = "<group>"; };
 		71CC926D22FEEB2800BE2F85 /* FFPageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFPageProtocol.h; sourceTree = "<group>"; };
+		71DC94DB2306D1EE0058F51C /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
+		71DC94DC2306D1EF0058F51C /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		71DCC51422FD829F00A34C00 /* HomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
 		71DCC51522FD829F00A34C00 /* HomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		71DCC51722FD82B500A34C00 /* PageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		71DCC51822FD82B500A34C00 /* PageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		71F1412E22FBF8B1000715A0 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		71F1412F22FBF8B1000715A0 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		D2E9524B095B65EE3C38B980 /* Pods-FFPage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFPage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FFPage/Pods-FFPage.debug.xcconfig"; sourceTree = "<group>"; };
+		E012D0FD6A317855558C89B0 /* Pods-FFPage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFPage.release.xcconfig"; path = "Pods/Target Support Files/Pods-FFPage/Pods-FFPage.release.xcconfig"; sourceTree = "<group>"; };
+		F7BF4E96453C22BCAD88F971 /* libPods-FFPage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FFPage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,17 +66,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A90FEFA58E222BC23F6BF34 /* libPods-FFPage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F01A98ABE92F9E41B764775 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D2E9524B095B65EE3C38B980 /* Pods-FFPage.debug.xcconfig */,
+				E012D0FD6A317855558C89B0 /* Pods-FFPage.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		716C837922F8119B00BD5D67 = {
 			isa = PBXGroup;
 			children = (
 				716C838422F8119B00BD5D67 /* FFPage */,
 				716C838322F8119B00BD5D67 /* Products */,
+				3F01A98ABE92F9E41B764775 /* Pods */,
+				8AD0E8455C3A94832AE38D09 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +111,8 @@
 				716C839022F8119D00BD5D67 /* LaunchScreen.storyboard */,
 				716C839322F8119D00BD5D67 /* Info.plist */,
 				716C839422F8119D00BD5D67 /* main.m */,
+				71DC94DB2306D1EE0058F51C /* TabViewController.h */,
+				71DC94DC2306D1EF0058F51C /* TabViewController.m */,
 				71F1412E22FBF8B1000715A0 /* TableViewController.h */,
 				71F1412F22FBF8B1000715A0 /* TableViewController.m */,
 				71DCC51422FD829F00A34C00 /* HomePageViewController.h */,
@@ -155,6 +176,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		8AD0E8455C3A94832AE38D09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7BF4E96453C22BCAD88F971 /* libPods-FFPage.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,6 +191,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 716C839822F8119D00BD5D67 /* Build configuration list for PBXNativeTarget "FFPage" */;
 			buildPhases = (
+				F5E67FB48B9D6ACFFF7356F3 /* [CP] Check Pods Manifest.lock */,
 				716C837E22F8119B00BD5D67 /* Sources */,
 				716C837F22F8119B00BD5D67 /* Frameworks */,
 				716C838022F8119B00BD5D67 /* Resources */,
@@ -220,11 +250,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F5E67FB48B9D6ACFFF7356F3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FFPage-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		716C837E22F8119B00BD5D67 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71DC94DD2306D1EF0058F51C /* TabViewController.m in Sources */,
 				716C839E22F811C300BD5D67 /* FFPageViewController.m in Sources */,
 				715C5E092303E8E500B6B516 /* FFRereshView.m in Sources */,
 				71DCC51622FD829F00A34C00 /* HomePageViewController.m in Sources */,
@@ -375,6 +427,7 @@
 		};
 		716C839922F8119D00BD5D67 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2E9524B095B65EE3C38B980 /* Pods-FFPage.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -393,6 +446,7 @@
 		};
 		716C839A22F8119D00BD5D67 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E012D0FD6A317855558C89B0 /* Pods-FFPage.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

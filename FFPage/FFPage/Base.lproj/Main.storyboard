@@ -10,44 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--FFPage-->
-        <scene sceneID="1bQ-Gr-Tyh">
-            <objects>
-                <viewController id="zvT-fO-jTT" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Kio-6E-gAx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ei1-LP-U1H">
-                                <rect key="frame" x="131.5" y="288" width="151" height="30"/>
-                                <state key="normal" title="FFPageViewController"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="push" id="pxy-Hb-Q82"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Xh-dl-Zvm">
-                                <rect key="frame" x="111" y="418" width="192" height="30"/>
-                                <state key="normal" title="FFHomePageViewController"/>
-                                <connections>
-                                    <segue destination="lzW-ih-1v9" kind="push" id="uXP-66-DBi"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="3Xh-dl-Zvm" firstAttribute="centerX" secondItem="Kio-6E-gAx" secondAttribute="centerX" id="Bht-gf-Yqa"/>
-                            <constraint firstItem="3Xh-dl-Zvm" firstAttribute="top" secondItem="Ei1-LP-U1H" secondAttribute="bottom" constant="100" id="DM2-Sy-ZIx"/>
-                            <constraint firstItem="Ei1-LP-U1H" firstAttribute="centerX" secondItem="Kio-6E-gAx" secondAttribute="centerX" id="LWe-bd-Jt8"/>
-                            <constraint firstItem="Ei1-LP-U1H" firstAttribute="top" secondItem="B4A-yC-gkt" secondAttribute="top" constant="200" id="TCO-Z6-DQ0"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="B4A-yC-gkt"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="FFPage" id="Sc5-PH-yQh"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tNr-JF-AET" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="220" y="73"/>
-        </scene>
         <!--Home Page View Controller-->
         <scene sceneID="3zp-dp-ivZ">
             <objects>
@@ -70,14 +32,34 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="28A-qh-GV8"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0Xe-f2-y1o"/>
+                    <navigationItem key="navigationItem" id="0Xe-f2-y1o">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="9AK-jz-msU">
+                            <rect key="frame" x="104" y="7" width="206" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="头部放大"/>
+                                <segment title="头部刷新"/>
+                                <segment title="底部刷新"/>
+                            </segments>
+                            <connections>
+                                <action selector="valueChangeAction:" destination="lzW-ih-1v9" eventType="valueChanged" id="n6H-Jz-jsX"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="GDm-Kz-PXN">
+                            <connections>
+                                <action selector="headHeightAction:" destination="lzW-ih-1v9" id="YId-HY-6oa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="EaO-ks-mcJ" id="u7H-wl-ndO"/>
+                        <outlet property="segmentdControl" destination="9AK-jz-msU" id="uJ2-Ya-FLK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w6z-Ih-axs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="219" y="894"/>
+            <point key="canvasLocation" x="219" y="73"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -88,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="第几页" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zzj-cg-Uj6">
-                                <rect key="frame" x="10" y="138" width="100" height="30"/>
+                                <rect key="frame" x="10" y="94" width="100" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Nng-za-xJ2"/>
                                     <constraint firstAttribute="height" constant="30" id="liX-zB-XDC"/>
@@ -98,21 +80,21 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCa-xb-wMC">
-                                <rect key="frame" x="160" y="138" width="31" height="30"/>
+                                <rect key="frame" x="160" y="94" width="31" height="30"/>
                                 <state key="normal" title="跳转"/>
                                 <connections>
                                     <action selector="jumpBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jed-wA-H5c"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tTm-T2-ghB">
-                                <rect key="frame" x="241" y="138" width="31" height="30"/>
+                                <rect key="frame" x="241" y="94" width="31" height="30"/>
                                 <state key="normal" title="刷新"/>
                                 <connections>
                                     <action selector="reloadBtnAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QBb-1M-JiZ"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hj3-k8-SA1">
-                                <rect key="frame" x="0.0" y="188" width="414" height="574"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -139,45 +121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1013" y="73"/>
-        </scene>
-        <!--Table View Controller-->
-        <scene sceneID="qFB-ye-WeR">
-            <objects>
-                <tableViewController storyboardIdentifier="TableViewController" id="oIr-gQ-mCX" customClass="TableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="OHO-Qp-Gj7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" id="XTV-NJ-m8L">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XTV-NJ-m8L" id="AcF-Gf-jjm">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="10000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5j-ru-MlK">
-                                            <rect key="frame" x="38" y="12" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="oIr-gQ-mCX" id="b7a-Rs-iv2"/>
-                            <outlet property="delegate" destination="oIr-gQ-mCX" id="nWV-Pu-uZz"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0rR-9V-lT5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1877" y="73"/>
+            <point key="canvasLocation" x="790" y="-858"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bEE-hN-15J">
@@ -190,12 +134,146 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="zvT-fO-jTT" kind="relationship" relationship="rootViewController" id="vKJ-hq-Lr3"/>
+                        <segue destination="lzW-ih-1v9" kind="relationship" relationship="rootViewController" id="Ifn-pO-ziF"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Zk-AO-Sm8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-597.10144927536237" y="72.991071428571431"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="y48-RV-AxR">
+            <objects>
+                <viewController storyboardIdentifier="HeadViewController" id="R68-TE-nd3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uk7-TD-qwB"/>
+                        <viewControllerLayoutGuide type="bottom" id="d9b-JZ-o1E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C8m-Pe-MDb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="新垣结衣" translatesAutoresizingMaskIntoConstraints="NO" id="xlG-8l-le1">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xlG-8l-le1" firstAttribute="top" secondItem="C8m-Pe-MDb" secondAttribute="top" id="75G-7D-MpP"/>
+                            <constraint firstAttribute="trailing" secondItem="xlG-8l-le1" secondAttribute="trailing" id="7cx-8b-7XJ"/>
+                            <constraint firstItem="xlG-8l-le1" firstAttribute="leading" secondItem="C8m-Pe-MDb" secondAttribute="leading" id="FXd-ns-ZUP"/>
+                            <constraint firstAttribute="bottom" secondItem="xlG-8l-le1" secondAttribute="bottom" id="eN4-YF-Fqx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FuR-h3-31u"/>
+                    </view>
+                    <size key="freeformSize" width="414" height="200"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZmF-xE-1AB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1107" y="-160"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="iKH-j0-9QZ">
+            <objects>
+                <viewController storyboardIdentifier="TabViewController" id="uJ6-IB-HKq" customClass="TabViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="H9a-vo-bww"/>
+                        <viewControllerLayoutGuide type="bottom" id="uIo-z2-yPi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AgK-G8-qQM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SnU-CP-FGQ" customClass="SPPageMenu">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="16"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="trackerStyle">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uIo-z2-yPi" firstAttribute="top" secondItem="SnU-CP-FGQ" secondAttribute="bottom" id="6ph-nr-hzL"/>
+                            <constraint firstAttribute="trailing" secondItem="SnU-CP-FGQ" secondAttribute="trailing" id="7Sz-h4-q1h"/>
+                            <constraint firstItem="SnU-CP-FGQ" firstAttribute="top" secondItem="AgK-G8-qQM" secondAttribute="top" id="7er-Qd-mGg"/>
+                            <constraint firstItem="SnU-CP-FGQ" firstAttribute="leading" secondItem="AgK-G8-qQM" secondAttribute="leading" id="B5f-hv-ZII"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cVT-1j-pvH"/>
+                    </view>
+                    <size key="freeformSize" width="414" height="50"/>
+                    <connections>
+                        <outlet property="pageMenu" destination="SnU-CP-FGQ" id="CKe-Rp-t8Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HdE-kz-bML" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1106" y="5"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="WAg-fR-O8q">
+            <objects>
+                <tableViewController storyboardIdentifier="TableViewController" id="9TY-eO-sPZ" customClass="TableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6AK-x5-XQf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" rowHeight="100" id="Tfi-jX-dgy">
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tfi-jX-dgy" id="tS5-e8-WS9">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="新垣结衣" translatesAutoresizingMaskIntoConstraints="NO" id="5WP-a4-ag0">
+                                            <rect key="frame" x="15" y="10" width="79.5" height="79.5"/>
+                                            <color key="backgroundColor" red="0.22352941179999999" green="0.29411764709999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="5WP-a4-ag0" secondAttribute="height" multiplier="1:1" id="Ftx-ag-KSg"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关于学习党中央关于雷锋同志的学习" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ft-67-je2">
+                                            <rect key="frame" x="102.5" y="10" width="296.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同志们，一定要写日记，官越大，越要写，可以上人民日报发表的哦" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHO-LI-mcN">
+                                            <rect key="frame" x="104.5" y="35.5" width="294.5" height="29"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="4Ft-67-je2" secondAttribute="trailing" constant="15" id="3el-qI-X1d"/>
+                                        <constraint firstItem="5WP-a4-ag0" firstAttribute="leading" secondItem="tS5-e8-WS9" secondAttribute="leading" constant="15" id="6lM-Md-dQH"/>
+                                        <constraint firstItem="aHO-LI-mcN" firstAttribute="top" secondItem="4Ft-67-je2" secondAttribute="bottom" constant="5" id="F6d-zd-Mou"/>
+                                        <constraint firstItem="4Ft-67-je2" firstAttribute="top" secondItem="5WP-a4-ag0" secondAttribute="top" id="Heq-sT-Q6z"/>
+                                        <constraint firstItem="5WP-a4-ag0" firstAttribute="top" secondItem="tS5-e8-WS9" secondAttribute="top" constant="10" id="TbT-g7-jNR"/>
+                                        <constraint firstAttribute="bottom" secondItem="5WP-a4-ag0" secondAttribute="bottom" constant="10" id="dYR-C9-PqC"/>
+                                        <constraint firstAttribute="trailing" secondItem="aHO-LI-mcN" secondAttribute="trailing" constant="15" id="gkZ-X7-7fE"/>
+                                        <constraint firstItem="4Ft-67-je2" firstAttribute="leading" secondItem="5WP-a4-ag0" secondAttribute="trailing" constant="8" id="jJc-Ul-f7m"/>
+                                        <constraint firstItem="aHO-LI-mcN" firstAttribute="leading" secondItem="5WP-a4-ag0" secondAttribute="trailing" constant="10" id="xgJ-Zl-Pfg"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9TY-eO-sPZ" id="91D-fq-nBt"/>
+                            <outlet property="delegate" destination="9TY-eO-sPZ" id="J15-nq-oAb"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DnA-SA-RP1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2014" y="76"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="新垣结衣" width="689" height="456"/>
+    </resources>
 </document>
