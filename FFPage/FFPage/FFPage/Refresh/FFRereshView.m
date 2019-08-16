@@ -1,0 +1,442 @@
+//
+//  FFRereshView.m
+//  FFPage
+//
+//  Created by North on 2019/8/14.
+//  Copyright © 2019 North. All rights reserved.
+//
+
+#import "FFRereshView.h"
+#import "FFPage.h"
+
+static NSString *  contentOffset = @"contentOffset";
+static NSString *  contentSize = @"contentSize";
+static NSString *  PanState = @"state";
+
+@interface FFRereshView ()
+
+/**
+ 回调块
+ */
+@property (copy ,nonatomic) FFRefreshBlock refreshBlock;
+
+/**
+ 物理动画容器
+ */
+@property(nonatomic, strong) UIDynamicAnimator *dynamicAnimator;
+
+/**
+ 回弹行为
+ */
+@property(nonatomic, weak)   UIAttachmentBehavior *bounceBehavior;
+
+@end
+
+@implementation FFRereshView
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+        self.interactiveEnable = YES;
+        [self setUpSubView];
+    }
+    
+    return self;
+}
+
++ (instancetype)headerWithRefreshBlock:(FFRefreshBlock)block{
+    
+    FFRereshView * view = [[self alloc] init];
+    view.refreshBlock = block;
+    return view;
+    
+}
+
++ (instancetype)footerWithRefreshBlock:(FFRefreshBlock)block{
+    
+    FFRereshView * view = [[self alloc] init];
+    view.refreshBlock = block;
+    view.isFooter = YES;
+    return view;
+}
+
+
+- (CGFloat)refreshHeight{
+
+    return 50;
+}
+
+- (void)setUpSubView{}
+
+- (void)setUpKVO{
+    
+    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
+    
+    [self.scrollView addObserver:self forKeyPath:contentOffset options:options context:nil];
+    
+    if (self.isFooter) {
+        
+        [self.scrollView addObserver:self forKeyPath:contentSize options:options context:nil];
+    }
+    
+    
+    [self.scrollView.panGestureRecognizer addObserver:self forKeyPath:PanState options:options context:nil];
+    
+}
+
+- (void)removeKVO{
+    
+    [self.scrollView removeObserver:self forKeyPath:PanState];
+    
+    [self.scrollView.panGestureRecognizer removeObserver:self forKeyPath:contentOffset];
+    
+    if (self.isFooter) [self.scrollView removeObserver:self forKeyPath:contentSize];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    
+        if ([keyPath isEqualToString:contentOffset]) {
+    
+            [self calcuStatusAndProgress];
+    
+        } if ([keyPath isEqualToString:contentSize]) {
+    
+            [self updateFrame];
+        }
+    
+       if([keyPath isEqualToString:PanState]){
+        
+           self.scrollView.isTouch = (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateBegan || self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateChanged);
+           
+       }
+    
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview{
+    [super willMoveToSuperview:newSuperview];
+    
+    if (!newSuperview || ![newSuperview isKindOfClass:[UIScrollView class]]) return;
+    
+    if (self.scrollView) [self removeKVO];
+    
+    self.scrollView = (UIScrollView *)newSuperview;
+    
+    self.dynamicAnimator =[[UIDynamicAnimator alloc]initWithReferenceView:self];
+    
+    
+    [self updateTouchStatus];
+    
+    [self setUpKVO];
+    
+    [self updateFrame];
+    
+}
+
+- (void)updateTouchStatus{
+    
+    __weak typeof(self) weakself = self;
+    
+    [self.scrollView addTounchBlock:^(BOOL isTouch) {
+         [weakself touchEndAction];
+    }];
+
+}
+
+- (void)touchEndAction{
+    
+    if(self.scrollView.isTouch )return;
+    
+    if(self.status == FFRereshStatusWillBeginRefresh){
+        
+        [self beginRefresh];
+    }
+    
+    if(self.status == FFRereshStatusWillEndRefresh){
+        
+        [self endRefresh];
+    }
+    
+}
+
+- (void)calcuStatusAndProgress{
+    
+    if (!self.scrollView.isTouch ) return;
+    if (self.status == FFRereshStatusRereshing) return;
+    
+    CGFloat offY = self.scrollView.contentOffset.y;
+    
+    //头部
+    if (!self.isFooter && offY < 0) {
+        
+        CGFloat scale = fabs(offY)/[self refreshHeight];
+        if (scale > 1) scale = 1;
+        self.percent = scale;
+
+    } else if (self.isFooter && offY > self.scrollView.maxOffsetY) {
+        
+        CGFloat scale = (offY - MAX(0, self.scrollView.contentSize.height - CGRectGetHeight(self.scrollView.bounds)))/[self refreshHeight];
+        if (scale > 1) scale = 1;
+        self.percent = scale;
+        
+        
+
+    }
+    
+
+    if(self.percent <= 0 && self.status != FFRereshStatusNormal){
+
+        self.status = FFRereshStatusNormal;
+        return;
+    }
+    
+   
+    if (self.percent > 0 &&
+       self.percent < 1 &&
+       self.status  == FFRereshStatusNormal) {
+           
+        self.status = FFRereshStatusPulling;
+        
+        return;
+    }
+    
+    if (self.percent >= 1 &&
+       (self.status == FFRereshStatusPulling || self.status == FFRereshStatusWillEndRefresh)) {
+        self.status = FFRereshStatusWillBeginRefresh;
+        return;
+    }
+    
+    
+    if (self.percent > 0 &&
+        self.percent < 1 &&
+        self.status  == FFRereshStatusWillBeginRefresh
+          ) {
+            self.status = FFRereshStatusWillEndRefresh;
+            return;
+        }
+    
+    
+    return;
+    
+}
+
+@synthesize percent = _percent;
+- (void)setPercent:(CGFloat)percent{
+    
+    if (_percent != percent) {
+        
+        _percent = percent;
+        
+        [self percentUpdated];
+    }
+    
+}
+@synthesize status = _status;
+- (void)setStatus:(FFRereshStatus)status{
+    
+    if (self.status != status) {
+        
+        _status = status;
+        
+        UIEdgeInsets inset = self.scrollView.contentInset;
+        
+        if (_status == FFRereshStatusWillBeginRefresh && !self.interactiveEnable) {
+
+            if (!self.isFooter) {
+                inset.top = [self refreshHeight];
+            } else {
+
+                inset.bottom = [self refreshHeight];
+            }
+
+        }
+        
+        if (_status == FFRereshStatusRereshing && self.interactiveEnable) {
+            
+            if (!self.isFooter) {
+                inset.top = [self refreshHeight];
+            } else {
+                
+                inset.bottom = [self refreshHeight];
+            }
+            
+        }
+        
+        
+        if (_status == FFRereshStatusNormal) {
+            
+            if (!self.isFooter) {
+                inset.top = 0;
+            } else {
+                
+                inset.bottom = 0;
+            }
+            
+        }
+        
+        self.scrollView.contentInset = inset;
+        
+        
+        [self statusUpdated];
+    }
+}
+
+- (void)statusUpdated{
+    
+    
+    
+    
+}
+
+- (void)percentUpdated{
+    
+    
+}
+
+- (void)updateFrame{
+    
+    CGFloat height = [self refreshHeight];
+    
+    if (self.isFooter) {
+        
+        self.frame = CGRectMake(0,MAX(self.scrollView.contentSize.height, CGRectGetHeight(self.scrollView.bounds)), CGRectGetWidth(self.scrollView.bounds), height);
+        return;
+    }
+    
+    self.frame = CGRectMake(0, - height, CGRectGetWidth(self.scrollView.bounds), height);
+}
+
+
+- (void)beginRefresh{
+    
+    if (self.status == FFRereshStatusRereshing) return;
+    
+    //代码调用刷新
+    if (self.status == FFRereshStatusNormal) {
+    
+        self.status  = FFRereshStatusWillBeginRefresh;
+        [self beginRefresh];
+        return;
+    }
+    
+    //交互中不允许
+    if (self.scrollView.isTouch ) return;
+    
+    self.status = FFRereshStatusRereshing;
+    if (self.refreshBlock)self.refreshBlock();
+    
+    self.scrollView.isFFRefreshing = YES;
+    if(self.interactiveEnable && !self.isFooter) self.scrollView.userInteractionEnabled = NO;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:FFPageBeginRefreshNotice object:self userInfo:nil];
+    
+    
+    //只有顶部刷新的时候才会 强制到顶点
+    if(self.isFooter) return;
+    CGFloat targetOffY =  -self.refreshHeight;
+    
+    //删除所有物理行为
+    
+    [self.dynamicAnimator removeAllBehaviors];
+    self.bounceBehavior = nil;
+
+    
+    // 增加一个附着的行为
+    
+    FFDynamicItem *item = [[FFDynamicItem alloc] init];
+    item.center = self.scrollView.contentOffset;
+    
+
+    UIAttachmentBehavior *bounceBehavior = [[UIAttachmentBehavior alloc] initWithItem:item attachedToAnchor:CGPointMake(0, targetOffY)];
+    bounceBehavior.length = 0;
+    bounceBehavior.damping = 1;
+    bounceBehavior.frequency = 4;
+    
+    __weak typeof(self) weakSelf = self;
+    bounceBehavior.action = ^{
+        weakSelf.scrollView.contentOffset = CGPointMake(0, item.center.y);
+        if (fabs(weakSelf.scrollView.contentOffset.y - targetOffY) < FLT_EPSILON) {
+            [weakSelf.dynamicAnimator removeAllBehaviors];
+            weakSelf.bounceBehavior = nil;
+            weakSelf.scrollView.isFFRefreshing = NO;
+            if(weakSelf.interactiveEnable) weakSelf.scrollView.userInteractionEnabled = YES;
+        }
+    };
+    
+    self.bounceBehavior = bounceBehavior;
+    [self.dynamicAnimator addBehavior:bounceBehavior];
+    
+}
+
+- (void)endRefresh{
+    
+    if (self.status == FFRereshStatusNormal) return;
+    
+    if (self.status == FFRereshStatusRereshing) {
+        self.status = FFRereshStatusWillEndRefresh;
+        [self endRefresh];
+        return;
+    }
+    
+    if (self.scrollView.isTouch ) return;
+    
+    self.scrollView.isFFRefreshing = YES;
+    if(self.interactiveEnable) self.scrollView.userInteractionEnabled = NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:FFPageEndRefreshNotice object:self userInfo:nil];
+    
+    
+    CGFloat maxOffY = MAX(0, self.scrollView.contentSize.height - CGRectGetHeight(self.scrollView.bounds));
+    //结束刷新时，控件被移出屏幕
+    if(self.isFooter && self.scrollView.contentOffset.y < maxOffY){
+        self.status = FFRereshStatusNormal;
+        if(self.interactiveEnable) self.scrollView.userInteractionEnabled = YES;
+        return;
+    }
+    
+    CGFloat targetOffY = 0;
+    
+    if(self.isFooter)targetOffY =maxOffY;
+    
+    //删除所有物理行为
+    
+    [self.dynamicAnimator removeAllBehaviors];
+    self.bounceBehavior = nil;
+
+    // 增加一个附着的行为
+    
+    FFDynamicItem *item = [[FFDynamicItem alloc] init];
+    item.center = self.scrollView.contentOffset;
+    
+    
+    
+    UIAttachmentBehavior *bounceBehavior = [[UIAttachmentBehavior alloc] initWithItem:item attachedToAnchor:CGPointMake(0, targetOffY)];
+    bounceBehavior.length = 0;
+    bounceBehavior.damping = 1;
+    bounceBehavior.frequency = 4;
+    
+    __weak typeof(self) weakSelf = self;
+    bounceBehavior.action = ^{
+        weakSelf.scrollView.contentOffset = CGPointMake(0, item.center.y);
+        if (fabs(weakSelf.scrollView.contentOffset.y - targetOffY) < FLT_EPSILON) {
+            [weakSelf.dynamicAnimator removeAllBehaviors];
+            weakSelf.bounceBehavior = nil;
+            weakSelf.scrollView.isFFRefreshing = NO;
+            weakSelf.status = FFRereshStatusNormal;
+            if(weakSelf.interactiveEnable) weakSelf.scrollView.userInteractionEnabled = YES;
+        }
+    };
+    
+    self.bounceBehavior = bounceBehavior;
+    [self.dynamicAnimator addBehavior:bounceBehavior];
+    
+}
+
+
+- (void)dealloc{
+    
+    [self removeKVO];
+}
+
+
+@end
