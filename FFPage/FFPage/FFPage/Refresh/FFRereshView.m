@@ -39,7 +39,6 @@ static NSString *  PanState = @"state";
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.interactiveEnable = YES;
         [self setUpSubView];
     }
     
