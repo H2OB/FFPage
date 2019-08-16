@@ -27,7 +27,8 @@ typedef NS_ENUM(NSUInteger, FFHomePageStyle) {
 @property (assign ,nonatomic) FFHomePageStyle style;
 
 /**
- 忽略上方间距 如果需要躲避导航条 传导航条高度 否则不用传值
+ 忽略上方间距 如果需要躲避导航条 传导航条高度
+ Tips:躲避导航条指视图跟导航条有重叠才传值
  */
 @property (assign ,nonatomic) CGFloat ignoreTopSpeace;
 
