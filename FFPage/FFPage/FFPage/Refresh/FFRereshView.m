@@ -334,7 +334,10 @@ static NSString *  PanState = @"state";
     
     
     //只有顶部刷新的时候才会 强制到顶点
-    if(self.isFooter) return;
+    if(self.isFooter){
+        self.scrollView.isFFRefreshing = NO;
+      return;
+    }
     CGFloat targetOffY =  -self.refreshHeight;
     
     //删除所有物理行为
@@ -392,6 +395,7 @@ static NSString *  PanState = @"state";
     if(self.isFooter && self.scrollView.contentOffset.y < maxOffY){
         self.status = FFRereshStatusNormal;
         if(self.interactiveEnable) self.scrollView.userInteractionEnabled = YES;
+        self.scrollView.isFFRefreshing = NO;
         return;
     }
     
