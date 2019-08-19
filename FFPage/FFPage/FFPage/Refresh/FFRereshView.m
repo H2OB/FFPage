@@ -39,7 +39,6 @@ static NSString *  PanState = @"state";
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.interactiveEnable = YES;
         [self setUpSubView];
     }
     
@@ -328,14 +327,15 @@ static NSString *  PanState = @"state";
     self.status = FFRereshStatusRereshing;
     if (self.refreshBlock)self.refreshBlock();
     
+    //只有顶部刷新的时候才会强制滚动
+    if(self.isFooter)return;
+    
+    
     self.scrollView.isFFRefreshing = YES;
     if(self.interactiveEnable && !self.isFooter) self.scrollView.userInteractionEnabled = NO;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:FFPageBeginRefreshNotice object:self userInfo:nil];
     
-    
-    //只有顶部刷新的时候才会 强制到顶点
-    if(self.isFooter) return;
     CGFloat targetOffY =  -self.refreshHeight;
     
     //删除所有物理行为
@@ -343,7 +343,6 @@ static NSString *  PanState = @"state";
     [self.dynamicAnimator removeAllBehaviors];
     self.bounceBehavior = nil;
 
-    
     // 增加一个附着的行为
     
     FFDynamicItem *item = [[FFDynamicItem alloc] init];
@@ -381,23 +380,25 @@ static NSString *  PanState = @"state";
         return;
     }
     
+    //交互中 不允许执行结束动画
+    
     if (self.scrollView.isTouch ) return;
+    
+    //结束的目标点
+    CGFloat maxOffY = MAX(0, self.scrollView.contentSize.height - CGRectGetHeight(self.scrollView.bounds));
+    
+    //底部结束刷新时，控件被移出屏幕
+    if(self.isFooter && self.scrollView.contentOffset.y < maxOffY){
+        self.status = FFRereshStatusNormal;
+        return;
+    }
+    
     
     self.scrollView.isFFRefreshing = YES;
     if(self.interactiveEnable) self.scrollView.userInteractionEnabled = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:FFPageEndRefreshNotice object:self userInfo:nil];
     
-    
-    CGFloat maxOffY = MAX(0, self.scrollView.contentSize.height - CGRectGetHeight(self.scrollView.bounds));
-    //结束刷新时，控件被移出屏幕
-    if(self.isFooter && self.scrollView.contentOffset.y < maxOffY){
-        self.status = FFRereshStatusNormal;
-        if(self.interactiveEnable) self.scrollView.userInteractionEnabled = YES;
-        return;
-    }
-    
     CGFloat targetOffY = 0;
-    
     if(self.isFooter)targetOffY =maxOffY;
     
     //删除所有物理行为

@@ -47,7 +47,7 @@
     self.homePageViewController = [[FFHomePageViewController alloc]init];
     self.homePageViewController.style = self.segmentdControl.selectedSegmentIndex;;
     self.homePageViewController.tabHeight = 50;
-    self.homePageViewController.headHeight = 200;
+    self.homePageViewController.headHeight = 300;
     self.homePageViewController.headViewController = headViewController;
     self.homePageViewController.tabViewController = self.tabViewController;
     self.homePageViewController.pageViewController = self.pageViewController;
@@ -89,6 +89,7 @@
 }
 - (IBAction)headHeightAction:(id)sender {
     
+
     self.homePageViewController.headHeight = randomBetween(200, 400);
     [self.homePageViewController reloadHeightWithAnimation:YES completion:nil];
     

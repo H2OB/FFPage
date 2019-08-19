@@ -153,7 +153,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="新垣结衣" translatesAutoresizingMaskIntoConstraints="NO" id="xlG-8l-le1">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timg" translatesAutoresizingMaskIntoConstraints="NO" id="xlG-8l-le1">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                             </imageView>
                         </subviews>
@@ -228,7 +228,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="新垣结衣" translatesAutoresizingMaskIntoConstraints="NO" id="5WP-a4-ag0">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="新垣结衣" translatesAutoresizingMaskIntoConstraints="NO" id="5WP-a4-ag0">
                                             <rect key="frame" x="15" y="10" width="79.5" height="79.5"/>
                                             <color key="backgroundColor" red="0.22352941179999999" green="0.29411764709999999" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -274,6 +274,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="timg" width="1024" height="768"/>
         <image name="新垣结衣" width="689" height="456"/>
     </resources>
 </document>
