@@ -9,6 +9,7 @@
 
 ## 用法
 
+step1
 ```
     
     self.homePageViewController = [[FFHomePageViewController alloc]init];
@@ -31,6 +32,7 @@
     
 ```
 
+step2
 ```
 //在下方可以左右切换的页面中需要实现 <FFPageProtocol>
 
@@ -43,7 +45,15 @@
    参考 TableViewController
 
 
+```
 
-
+step3
 
 ```
+更新当前控制器是哪一个
+
+[self.homePageViewController updateCurrentController:self.pageViewController.currentController];
+
+```
+
+
