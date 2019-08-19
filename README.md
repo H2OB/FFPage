@@ -27,3 +27,16 @@
     [self.homePageViewController didMoveToParentViewController:self];
     
 ```
+
+```
+//在下方可以左右切换的页面中需要实现<FFPageProtocol>
+
+@interface TableViewController ()<FFPageProtocol>
+
+- (UIScrollView *)scrollview{
+    
+    return self.tableView;
+}
+
+
+```
