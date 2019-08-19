@@ -10,7 +10,7 @@
 ## 用法
 
 ```
-
+    
     self.homePageViewController = [[FFHomePageViewController alloc]init];
     //设置样式
     self.homePageViewController.style = self.segmentdControl.selectedSegmentIndex;;
@@ -26,17 +26,24 @@
     [self.contentView addSubview:self.homePageViewController.view];
     [self.homePageViewController didMoveToParentViewController:self];
     
+    
+    参考HomePageViewController类
+    
 ```
 
 ```
-//在下方可以左右切换的页面中需要实现<FFPageProtocol>
+//在下方可以左右切换的页面中需要实现 <FFPageProtocol>
 
-@interface TableViewController ()<FFPageProtocol>
-
+//告诉他你的滚动视图是哪一个
 - (UIScrollView *)scrollview{
     
     return self.tableView;
 }
+
+   参考 TableViewController
+
+
+
 
 
 ```
