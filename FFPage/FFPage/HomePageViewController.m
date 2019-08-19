@@ -89,7 +89,7 @@
 }
 - (IBAction)headHeightAction:(id)sender {
     
-    self.homePageViewController.headHeight = randomBetween(200, 300);
+    self.homePageViewController.headHeight = randomBetween(200, 400);
     [self.homePageViewController reloadHeightWithAnimation:YES completion:nil];
     
 }
