@@ -101,7 +101,7 @@
     [self addSubViewOrController:tab];
     
     
-    NSAssert(self.pageViewController != nil, @"请设置tabViewController或者tabView");
+    NSAssert(self.pageViewController != nil, @"请设置pageViewController");
     
     [self addSubViewOrController:self.pageViewController];
     
