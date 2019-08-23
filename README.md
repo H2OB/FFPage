@@ -6,19 +6,29 @@
 * 刷新/放大效果
 * 差异滚动(左右两边滚动偏移量不互相影响)
 * 动画改变高度
+* 支持旋屏
 
 ## 用法
 
-step1
+step1   使用中可参考 HomePageViewController
+
 ```
     
     self.homePageViewController = [[FFHomePageViewController alloc]init];
-    //设置样式
+    //设置样式 包括头部放大/头部刷新/底部刷新
     self.homePageViewController.style = self.segmentdControl.selectedSegmentIndex;;
+    //设置tab高度
     self.homePageViewController.tabHeight = 50;
+    //设置head高度
     self.homePageViewController.headHeight = 300;
+    //设置头部
     self.homePageViewController.headViewController = headViewController;
+    //和上方设置头部2选一
+    self.homePageViewController.headView = [UIView new] ;
+    //设置tab
     self.homePageViewController.tabViewController = self.tabViewController;
+    //和上方设置tab2选一
+    self.homePageViewController.tabView = [UIView new] ;
     //项目内内置了一个替代UIPageViewController的控件 可用其他替代
     self.homePageViewController.pageViewController = self.pageViewController;
     
@@ -28,11 +38,13 @@ step1
     [self.homePageViewController didMoveToParentViewController:self];
     
     
-    参考HomePageViewController类
+    
     
 ```
 
-step2
+step2   使用中可参考 TableViewController
+
+
 ```
 //在下方可以左右切换的页面中需要实现 <FFPageProtocol>
 
@@ -41,9 +53,6 @@ step2
     
     return self.tableView;
 }
-
-   参考 TableViewController
-
 
 ```
 
