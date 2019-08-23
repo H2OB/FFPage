@@ -75,18 +75,53 @@
     
     [self.view addSubview:self.scrollview];
     
-    [self addChildViewController:self.headViewController];
-    [self.scrollview addSubview:self.headViewController.view];
-    
-    [self addChildViewController:self.tabViewController];
-    [self.scrollview addSubview:self.tabViewController.view];
-    
-    [self addChildViewController:self.pageViewController];
-    [self.scrollview addSubview:self.pageViewController.view];
+    [self addSubViewControllers];
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureAction:)];
     panGesture.delegate = self;
     [self.view addGestureRecognizer:panGesture];
+    
+}
+
+- (void)addSubViewControllers{
+    
+    [self.scrollview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.childViewControllers makeObjectsPerformSelector:@selector(removeFromParentViewController)];
+    
+    id head = self.headViewController?:self.headView;
+    
+    NSAssert(head != nil, @"请设置headViewController或者headView");
+    
+    [self addSubViewOrController:head];
+    
+    id tab = self.tabViewController?:self.tabView;
+    
+    NSAssert(head != nil, @"请设置tabViewController或者tabView");
+    
+    [self addSubViewOrController:tab];
+    
+    
+    NSAssert(self.pageViewController != nil, @"请设置tabViewController或者tabView");
+    
+    [self addSubViewOrController:self.pageViewController];
+    
+}
+
+- (void)addSubViewOrController:(id)sender{
+    
+    if([sender isKindOfClass:[UIView class]]){
+        [self.scrollview addSubview:sender];
+        return;
+    }
+    
+    if([sender isKindOfClass:[UIViewController class]]){
+        
+        UIViewController *controller = sender;
+        
+        [self addChildViewController:controller];
+        [self.scrollview addSubview:controller.view];
+        [controller didMoveToParentViewController:self];
+    }
     
 }
 
@@ -137,6 +172,11 @@
     if(self.controller.scrollview.footer) self.controller.scrollview.footer .interactiveEnable = NO;
     if(self.scrollview.header) self.scrollview.footer .interactiveEnable = NO;
     
+}
+
+- (void)reloadData{
+    
+    [self addSubViewControllers];
 }
 
 - (void)reloadHeightWithAnimation:(BOOL)animation completion:(void (^)(void))completion{
@@ -216,9 +256,6 @@
         [self.dynamicAnimator addBehavior:inertialBehavior];
         
     }
-    
-    
-    
     
 }
 #pragma mark -  内外部滚动视图的偏移量处理

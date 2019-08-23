@@ -43,19 +43,29 @@ typedef NS_ENUM(NSUInteger, FFHomePageStyle) {
 @property (assign ,nonatomic) CGFloat tabHeight;
 
 /**
- 头部控制器
+ 头部控制器 和 headView 二选一
  */
-@property (retain ,nonatomic ,nonnull) UIViewController *headViewController;
+@property (retain ,nonatomic ,nullable) UIViewController *headViewController;
+/**
+ 头部视图 和 headViewController 二选一
+ */
+@property (retain ,nonatomic ,nullable) UIView *headView;
 
 /**
  选项栏控制器
  */
-@property (retain ,nonatomic ,nonnull) UIViewController *tabViewController;
+@property (retain ,nonatomic ,nullable) UIViewController *tabViewController;
+
+/**
+ 选项栏视图
+ */
+@property (retain ,nonatomic ,nullable) UIView *tabView;
 
 /**
  分页控制器
  */
 @property (retain ,nonatomic ,nonnull) UIViewController *pageViewController;
+
 
 /**
  可上下滚动的滚动视图
@@ -78,6 +88,13 @@ typedef NS_ENUM(NSUInteger, FFHomePageStyle) {
  @param completion 完成回调
  */
 - (void)reloadHeightWithAnimation:(BOOL)animation completion:(void(^_Nullable)(void))completion;
+
+
+/**
+  需要修改已经设置的控制器/视图时
+  仅仅修改高度请调用reloadHeightWithAnimation
+ */
+- (void)reloadData;
 
 
 @end

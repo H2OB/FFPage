@@ -55,7 +55,7 @@
     
     [self addChildViewController:self.homePageViewController];
     [self.contentView addSubview:self.homePageViewController.view];
-    
+    [self.homePageViewController didMoveToParentViewController:self];
     
     
     self.tabViewController.pageMenu.delegate = self;

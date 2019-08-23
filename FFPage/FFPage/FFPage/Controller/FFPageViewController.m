@@ -202,22 +202,22 @@ NS_INLINE NSInteger pageFormOffset(UIScrollView *scrollView){
     }
 }
 
+#pragma mark - 更新控制器/视图
 
 - (void)updateDisplay{
     
     //调整 scrollview的contentSize
     [self updateContentSize];
     
-    //调增页面位置
+    //调整位置
     [self addConrolerForPage:@(_currentPage)];
+    
     //调整滚动量
     self.scrollview.contentOffset = frameForPage(self, self.currentPage).origin;
     
     [self updateAppearance:_currentPage];
     
 }
-
-#pragma mark - 更新控制器/视图
 
 /**
  更新滚动区域大小
@@ -249,7 +249,7 @@ NS_INLINE NSInteger pageFormOffset(UIScrollView *scrollView){
         UIViewController *controller = [self.cacheMaps objectForKey:page];
         //可能涉及到调整屏幕旋转 需要调整frame
         controller.view.frame = frameForPage(self, intPage);
-    
+        [self.scrollview bringSubviewToFront:controller.view];
         [self.pagesArray removeObject:page];
         [self.pagesArray insertObject:page atIndex:0];
         
