@@ -87,21 +87,18 @@
     
     [self.scrollview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.childViewControllers makeObjectsPerformSelector:@selector(removeFromParentViewController)];
+        
+    NSAssert(self.headViewController != nil, @"请设置headViewController");
     
-    id head = self.headViewController?:self.headView;
+    [self addSubViewOrController:self.headViewController];
+
     
-    NSAssert(head != nil, @"请设置headViewController或者headView");
+    NSAssert(self.tabViewController != nil, @"请设置tabViewController");
     
-    [self addSubViewOrController:head];
-    
-    id tab = self.tabViewController?:self.tabView;
-    
-    NSAssert(head != nil, @"请设置tabViewController或者tabView");
-    
-    [self addSubViewOrController:tab];
+    [self addSubViewOrController:self.tabViewController];
     
     
-    NSAssert(self.pageViewController != nil, @"请设置pageViewController");
+    NSAssert(self.pageViewController != nil, @"请设置tabViewController或者tabView");
     
     [self addSubViewOrController:self.pageViewController];
     

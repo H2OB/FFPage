@@ -43,23 +43,16 @@ typedef NS_ENUM(NSUInteger, FFHomePageStyle) {
 @property (assign ,nonatomic) CGFloat tabHeight;
 
 /**
- 头部控制器 和 headView 二选一
+ 头部控制器
  */
 @property (retain ,nonatomic ,nullable) UIViewController *headViewController;
-/**
- 头部视图 和 headViewController 二选一
- */
-@property (retain ,nonatomic ,nullable) UIView *headView;
+
 
 /**
  选项栏控制器
  */
 @property (retain ,nonatomic ,nullable) UIViewController *tabViewController;
 
-/**
- 选项栏视图
- */
-@property (retain ,nonatomic ,nullable) UIView *tabView;
 
 /**
  分页控制器
