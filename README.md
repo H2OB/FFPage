@@ -23,12 +23,10 @@ step1   使用中可参考 HomePageViewController
     self.homePageViewController.headHeight = 300;
     //设置头部
     self.homePageViewController.headViewController = headViewController;
-    //和上方设置头部2选一
-    self.homePageViewController.headView = [UIView new] ;
+    
     //设置tab
     self.homePageViewController.tabViewController = self.tabViewController;
-    //和上方设置tab2选一
-    self.homePageViewController.tabView = [UIView new] ;
+   
     //项目内内置了一个替代UIPageViewController的控件 可用其他替代
     self.homePageViewController.pageViewController = self.pageViewController;
     
