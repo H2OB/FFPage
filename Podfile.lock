@@ -1,0 +1,16 @@
+PODS:
+  - SPPageMenu (3.5.0)
+
+DEPENDENCIES:
+  - SPPageMenu
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SPPageMenu
+
+SPEC CHECKSUMS:
+  SPPageMenu: da182aafcec55719d5c326103cc7716c1e48f311
+
+PODFILE CHECKSUM: f8c7a99d096261183fe4729894d0e3b10d8419f9
+
+COCOAPODS: 1.5.2
