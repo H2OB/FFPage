@@ -1,5 +1,5 @@
 # FFPage
-![FFPage](https://github.com/H2OB/FFPage/blob/master/FFPage.gif)
+![FFPage](https://github.com/H2OB/FFPage/FFPage.gif)
 
 
 ## 支持
@@ -17,15 +17,15 @@ step1   使用中可参考 HomePageViewController
     self.homePageViewController = [[FFHomePageViewController alloc]init];
     //设置样式 包括头部放大/头部刷新/底部刷新
     self.homePageViewController.style = self.segmentdControl.selectedSegmentIndex;;
-    //设置tab高度
-    self.homePageViewController.tabHeight = 50;
+    //设置分类高度
+    self.homePageViewController.categroyHeight = 50;
     //设置head高度
     self.homePageViewController.headHeight = 300;
     //设置头部
     self.homePageViewController.headViewController = headViewController;
     
-    //设置tab
-    self.homePageViewController.tabViewController = self.tabViewController;
+    //设置分类
+    self.homePageViewController.categroyViewController = self.tabViewController;
    
     //项目内内置了一个替代UIPageViewController的控件 可用其他替代
     self.homePageViewController.pageViewController = self.pageViewController;
@@ -62,5 +62,10 @@ step3
 [self.homePageViewController updateCurrentController:self.pageViewController.currentController];
 
 ```
+
+other 
+如果需要根据滚动便宜量对导航栏透明度颜色等做改变 可以接收通知FFHomeScrollViewContentOffsetChangedNotice 
+
+
 
 原理会在以后陆续更新
