@@ -1,5 +1,5 @@
 # FFPage
-![FFPage](https://github.com/H2OB/FFPage/FFPage.gif)
+![FFPage](https://github.com/H2OB/FFPage/blob/master/FFPage.gif)
 
 
 ## 支持
