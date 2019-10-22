@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		717486F4235EDE5A002E078B /* FFRereshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 717486E6235EDE5A002E078B /* FFRereshView.m */; };
+		717486F5235EDE5A002E078B /* FFDynamicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 717486E9235EDE5A002E078B /* FFDynamicItem.m */; };
+		717486F6235EDE5A002E078B /* UIScrollView+FFPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 717486EA235EDE5A002E078B /* UIScrollView+FFPage.m */; };
+		717486F7235EDE5A002E078B /* FFPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717486EF235EDE5A002E078B /* FFPageViewController.m */; };
+		717486F8235EDE5A002E078B /* FFHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717486F0235EDE5A002E078B /* FFHomePageViewController.m */; };
 		71C4E55E23598B5F00628CF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C4E55D23598B5F00628CF9 /* AppDelegate.m */; };
 		71C4E56423598B5F00628CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71C4E56223598B5F00628CF9 /* Main.storyboard */; };
 		71C4E56623598B6300628CF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C4E56523598B6300628CF9 /* Assets.xcassets */; };
 		71C4E56923598B6300628CF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71C4E56723598B6300628CF9 /* LaunchScreen.storyboard */; };
 		71C4E56C23598B6300628CF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C4E56B23598B6300628CF9 /* main.m */; };
-		71C4E58323598BBA00628CF9 /* FFRereshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C4E57523598BBA00628CF9 /* FFRereshView.m */; };
-		71C4E58423598BBA00628CF9 /* FFDynamicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C4E57823598BBA00628CF9 /* FFDynamicItem.m */; };
-		71C4E58523598BBA00628CF9 /* UIScrollView+FFPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C4E57923598BBA00628CF9 /* UIScrollView+FFPage.m */; };
-		71C4E58623598BBA00628CF9 /* FFPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C4E57E23598BBA00628CF9 /* FFPageViewController.m */; };
-		71C4E58723598BBA00628CF9 /* FFHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C4E57F23598BBA00628CF9 /* FFHomePageViewController.m */; };
 		71EA4368235DBDFA00D030DB /* HomePageExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EA4367235DBDFA00D030DB /* HomePageExampleViewController.m */; };
 		71EA436B235DBE0D00D030DB /* PageExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EA436A235DBE0D00D030DB /* PageExampleViewController.m */; };
 		71EA436E235DBEA600D030DB /* HeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EA436D235DBEA600D030DB /* HeadViewController.m */; };
@@ -29,6 +29,18 @@
 /* Begin PBXFileReference section */
 		1E07C97C29A2A470FE87B287 /* Pods-FFPageExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FFPageExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FFPageExample/Pods-FFPageExample.debug.xcconfig"; sourceTree = "<group>"; };
 		48B42ACA11473C0CAFDECF3E /* libPods-FFPageExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FFPageExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		717486E5235EDE5A002E078B /* FFRereshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFRereshView.h; sourceTree = "<group>"; };
+		717486E6235EDE5A002E078B /* FFRereshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFRereshView.m; sourceTree = "<group>"; };
+		717486E8235EDE5A002E078B /* UIScrollView+FFPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+FFPage.h"; sourceTree = "<group>"; };
+		717486E9235EDE5A002E078B /* FFDynamicItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDynamicItem.m; sourceTree = "<group>"; };
+		717486EA235EDE5A002E078B /* UIScrollView+FFPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+FFPage.m"; sourceTree = "<group>"; };
+		717486EB235EDE5A002E078B /* FFDynamicItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDynamicItem.h; sourceTree = "<group>"; };
+		717486ED235EDE5A002E078B /* FFPageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPageProtocol.h; sourceTree = "<group>"; };
+		717486EF235EDE5A002E078B /* FFPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFPageViewController.m; sourceTree = "<group>"; };
+		717486F0235EDE5A002E078B /* FFHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHomePageViewController.m; sourceTree = "<group>"; };
+		717486F1235EDE5A002E078B /* FFPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPageViewController.h; sourceTree = "<group>"; };
+		717486F2235EDE5A002E078B /* FFHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFHomePageViewController.h; sourceTree = "<group>"; };
+		717486F3235EDE5A002E078B /* FFPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPage.h; sourceTree = "<group>"; };
 		71C4E55923598B5F00628CF9 /* FFPage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FFPage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C4E55C23598B5F00628CF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		71C4E55D23598B5F00628CF9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -37,18 +49,6 @@
 		71C4E56823598B6300628CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71C4E56A23598B6300628CF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71C4E56B23598B6300628CF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		71C4E57423598BBA00628CF9 /* FFRereshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFRereshView.h; sourceTree = "<group>"; };
-		71C4E57523598BBA00628CF9 /* FFRereshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFRereshView.m; sourceTree = "<group>"; };
-		71C4E57723598BBA00628CF9 /* UIScrollView+FFPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+FFPage.h"; sourceTree = "<group>"; };
-		71C4E57823598BBA00628CF9 /* FFDynamicItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDynamicItem.m; sourceTree = "<group>"; };
-		71C4E57923598BBA00628CF9 /* UIScrollView+FFPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+FFPage.m"; sourceTree = "<group>"; };
-		71C4E57A23598BBA00628CF9 /* FFDynamicItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDynamicItem.h; sourceTree = "<group>"; };
-		71C4E57C23598BBA00628CF9 /* FFPageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPageProtocol.h; sourceTree = "<group>"; };
-		71C4E57E23598BBA00628CF9 /* FFPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFPageViewController.m; sourceTree = "<group>"; };
-		71C4E57F23598BBA00628CF9 /* FFHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHomePageViewController.m; sourceTree = "<group>"; };
-		71C4E58023598BBA00628CF9 /* FFPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPageViewController.h; sourceTree = "<group>"; };
-		71C4E58123598BBA00628CF9 /* FFHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFHomePageViewController.h; sourceTree = "<group>"; };
-		71C4E58223598BBA00628CF9 /* FFPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPage.h; sourceTree = "<group>"; };
 		71EA4366235DBDFA00D030DB /* HomePageExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageExampleViewController.h; sourceTree = "<group>"; };
 		71EA4367235DBDFA00D030DB /* HomePageExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageExampleViewController.m; sourceTree = "<group>"; };
 		71EA4369235DBE0D00D030DB /* PageExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageExampleViewController.h; sourceTree = "<group>"; };
@@ -76,9 +76,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		717486E3235EDE5A002E078B /* FFPage */ = {
+			isa = PBXGroup;
+			children = (
+				717486E4235EDE5A002E078B /* Refresh */,
+				717486E7235EDE5A002E078B /* Utils */,
+				717486EC235EDE5A002E078B /* Protocol */,
+				717486EE235EDE5A002E078B /* Controller */,
+				717486F3235EDE5A002E078B /* FFPage.h */,
+			);
+			path = FFPage;
+			sourceTree = "<group>";
+		};
+		717486E4235EDE5A002E078B /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				717486E5235EDE5A002E078B /* FFRereshView.h */,
+				717486E6235EDE5A002E078B /* FFRereshView.m */,
+			);
+			path = Refresh;
+			sourceTree = "<group>";
+		};
+		717486E7235EDE5A002E078B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				717486E8235EDE5A002E078B /* UIScrollView+FFPage.h */,
+				717486E9235EDE5A002E078B /* FFDynamicItem.m */,
+				717486EA235EDE5A002E078B /* UIScrollView+FFPage.m */,
+				717486EB235EDE5A002E078B /* FFDynamicItem.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		717486EC235EDE5A002E078B /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				717486ED235EDE5A002E078B /* FFPageProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		717486EE235EDE5A002E078B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				717486EF235EDE5A002E078B /* FFPageViewController.m */,
+				717486F0235EDE5A002E078B /* FFHomePageViewController.m */,
+				717486F1235EDE5A002E078B /* FFPageViewController.h */,
+				717486F2235EDE5A002E078B /* FFHomePageViewController.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		71C4E55023598B5F00628CF9 = {
 			isa = PBXGroup;
 			children = (
+				717486E3235EDE5A002E078B /* FFPage */,
 				71C4E55B23598B5F00628CF9 /* FFPageExample */,
 				71C4E55A23598B5F00628CF9 /* Products */,
 				FD2659146793F93809667850 /* Pods */,
@@ -97,7 +149,6 @@
 		71C4E55B23598B5F00628CF9 /* FFPageExample */ = {
 			isa = PBXGroup;
 			children = (
-				71C4E57223598BBA00628CF9 /* FFPage */,
 				71EA4363235DBB8400D030DB /* EXample */,
 				71C4E55C23598B5F00628CF9 /* AppDelegate.h */,
 				71C4E55D23598B5F00628CF9 /* AppDelegate.m */,
@@ -108,57 +159,6 @@
 				71C4E56B23598B6300628CF9 /* main.m */,
 			);
 			path = FFPageExample;
-			sourceTree = "<group>";
-		};
-		71C4E57223598BBA00628CF9 /* FFPage */ = {
-			isa = PBXGroup;
-			children = (
-				71C4E57323598BBA00628CF9 /* Refresh */,
-				71C4E57623598BBA00628CF9 /* Utils */,
-				71C4E57B23598BBA00628CF9 /* Protocol */,
-				71C4E57D23598BBA00628CF9 /* Controller */,
-				71C4E58223598BBA00628CF9 /* FFPage.h */,
-			);
-			path = FFPage;
-			sourceTree = "<group>";
-		};
-		71C4E57323598BBA00628CF9 /* Refresh */ = {
-			isa = PBXGroup;
-			children = (
-				71C4E57423598BBA00628CF9 /* FFRereshView.h */,
-				71C4E57523598BBA00628CF9 /* FFRereshView.m */,
-			);
-			path = Refresh;
-			sourceTree = "<group>";
-		};
-		71C4E57623598BBA00628CF9 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				71C4E57723598BBA00628CF9 /* UIScrollView+FFPage.h */,
-				71C4E57823598BBA00628CF9 /* FFDynamicItem.m */,
-				71C4E57923598BBA00628CF9 /* UIScrollView+FFPage.m */,
-				71C4E57A23598BBA00628CF9 /* FFDynamicItem.h */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		71C4E57B23598BBA00628CF9 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				71C4E57C23598BBA00628CF9 /* FFPageProtocol.h */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		71C4E57D23598BBA00628CF9 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				71C4E58023598BBA00628CF9 /* FFPageViewController.h */,
-				71C4E57E23598BBA00628CF9 /* FFPageViewController.m */,
-				71C4E57F23598BBA00628CF9 /* FFHomePageViewController.m */,
-				71C4E58123598BBA00628CF9 /* FFHomePageViewController.h */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		71EA4363235DBB8400D030DB /* EXample */ = {
@@ -305,18 +305,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				717486F8235EDE5A002E078B /* FFHomePageViewController.m in Sources */,
 				71EA437A235E95CD00D030DB /* RefreshView.m in Sources */,
+				717486F7235EDE5A002E078B /* FFPageViewController.m in Sources */,
 				71EA4371235DBEB400D030DB /* CategroyViewController.m in Sources */,
-				71C4E58423598BBA00628CF9 /* FFDynamicItem.m in Sources */,
-				71C4E58523598BBA00628CF9 /* UIScrollView+FFPage.m in Sources */,
-				71C4E58323598BBA00628CF9 /* FFRereshView.m in Sources */,
 				71EA4377235DBED300D030DB /* PageSubViewController.m in Sources */,
+				717486F4235EDE5A002E078B /* FFRereshView.m in Sources */,
 				71EA4368235DBDFA00D030DB /* HomePageExampleViewController.m in Sources */,
-				71C4E58623598BBA00628CF9 /* FFPageViewController.m in Sources */,
 				71C4E56C23598B6300628CF9 /* main.m in Sources */,
+				717486F5235EDE5A002E078B /* FFDynamicItem.m in Sources */,
 				71EA436E235DBEA600D030DB /* HeadViewController.m in Sources */,
-				71C4E58723598BBA00628CF9 /* FFHomePageViewController.m in Sources */,
 				71C4E55E23598B5F00628CF9 /* AppDelegate.m in Sources */,
+				717486F6235EDE5A002E078B /* UIScrollView+FFPage.m in Sources */,
 				71EA436B235DBE0D00D030DB /* PageExampleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
