@@ -11,7 +11,7 @@
 ## 用法
 
 ```
-pod 'FFPage','1.0.0'
+pod 'FFPage'
 ```
 
 
