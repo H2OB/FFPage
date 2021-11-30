@@ -119,6 +119,11 @@ typedef NS_ENUM(NSUInteger, ScrollDirection) {
  */
 - (void)reloadData;
 
+/**
+ 更新总数,不会删除已有控制器
+ */
+- (void)updateTotalCount;
+
 @end
 
 

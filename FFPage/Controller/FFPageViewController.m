@@ -179,6 +179,15 @@ NS_INLINE NSInteger pageFormOffset(UIScrollView *scrollView){
     
 }
 
+- (void)updateTotalCount{
+    
+    [self updateContentSize];
+    //调整位置
+    [self addConrolerForPage:@(_currentPage)];
+    //调整滚动量
+    self.scrollview.contentOffset = frameForPage(self, self.currentPage).origin;
+}
+
 
 - (void)scrollToPage:(NSInteger)page animation:(BOOL)animation{
     
@@ -475,14 +484,6 @@ NS_INLINE NSInteger pageFormOffset(UIScrollView *scrollView){
     [super viewDidDisappear:animated];
     
     [self.currentController endAppearanceTransition];
-}
-
-
-- (void)dealloc{
-    
-    
-    
-    
 }
 
 
