@@ -10,6 +10,11 @@
 
 ## 用法
 
+```
+pod 'FFPage','1.0.0'
+```
+
+
 step1   使用中可参考 HomePageViewController
 
 ```
