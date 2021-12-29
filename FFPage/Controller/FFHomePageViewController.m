@@ -222,14 +222,33 @@
         if(fabs(velocity.y) < self.minVelocity){
             
             self.isScroll = NO;
-            
-            CGFloat outOffY = self.scrollview.contentOffset.y;//外部滚动视图的偏移量
-            CGFloat subOffY = [self.controller scrollview].contentOffset.y; //子视图的偏移量
+            // 外部滚动视图的偏移量
+            CGFloat outOffY = self.scrollview.contentOffset.y;
+            // 子视图的偏移量
+            CGFloat subOffY = [self.controller scrollview].contentOffset.y;
+            // 子视图最大
             CGFloat maxSubOffY = self.scrollview.maxOffsetY;
+
+            // 子视图内容是否填满 影响向上滚动的回弹
+            BOOL isSubFill = [self.controller scrollview].contentSize.height > [self.controller scrollview].bounds.size.height;
             
-            if(subOffY > maxSubOffY)[self bounceForScrollView:[self.controller scrollview] isTop:NO];
-            else if(subOffY < -[self.controller scrollview].contentInset.top) [self bounceForScrollView:[self.controller scrollview] isTop:YES];
-            else if(outOffY < -self.scrollview.contentInset.top) [self bounceForScrollView:self.scrollview isTop:YES];
+            if (subOffY > maxSubOffY) {
+                
+                [self bounceForScrollView:[self.controller scrollview] isTop:NO];
+                
+            } else if (subOffY < -[self.controller scrollview].contentInset.top) {
+                
+                [self bounceForScrollView:[self.controller scrollview] isTop:YES];
+                
+            } else if (outOffY < -self.scrollview.contentInset.top) {
+                
+                [self bounceForScrollView:self.scrollview isTop:YES];
+                
+            } else if (!isSubFill) {
+                
+                [self bounceForScrollView:[self.controller scrollview] isTop:subOffY < 0];
+                
+            }
             return;
         }
         
