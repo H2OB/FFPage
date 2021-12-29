@@ -28,22 +28,22 @@
     
     self.tableView.rowHeight = 100;
     
-    self.tableView.header = [RefreshView initWithRefreshBlock:^{
+    self.tableView.ff_header = [RefreshView initWithRefreshBlock:^{
 
          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 
-             [self.tableView.header endRefresh];
+             [self.tableView.ff_header endRefresh];
 
          });
 
      }];
 
     
-     self.tableView.footer = [RefreshView initWithRefreshBlock:^{
+     self.tableView.ff_footer = [RefreshView initWithRefreshBlock:^{
 
          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 
-             [self.tableView.footer endRefresh];
+             [self.tableView.ff_footer endRefresh];
 
          });
 
@@ -64,7 +64,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 50;
+    return 2;
 }
 
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

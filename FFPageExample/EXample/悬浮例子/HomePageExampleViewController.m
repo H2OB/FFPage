@@ -79,17 +79,17 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
     
     if(sender.selectedSegmentIndex == 1){
         
-        self.homePageViewController.scrollview.header = [RefreshView initWithRefreshBlock:^{
+        self.homePageViewController.scrollview.ff_header = [RefreshView initWithRefreshBlock:^{
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.homePageViewController.scrollview.header endRefresh];
+                [self.homePageViewController.scrollview.ff_header endRefresh];
             });
             
         }];
         
     } else {
         
-        self.homePageViewController.scrollview.header = nil;
+        self.homePageViewController.scrollview.ff_header = nil;
     }
     
     
