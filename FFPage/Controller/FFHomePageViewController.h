@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger, FFHomePageStyle) {
  目的是获取滚动视图
  @param controller 实现FFPageProtocol的控制器
  */
-- (void)updateCurrentController:(id<FFPageProtocol>_Nonnull )controller;
+- (void)updateCurrentController:(UIViewController<FFPageProtocol> * _Nonnull)controller;
 
 
 /**

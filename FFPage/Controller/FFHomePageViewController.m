@@ -11,7 +11,7 @@
 /**
  当前分页中显示的控制器
  */
-@property (weak ,nonatomic) id<FFPageProtocol> controller;
+@property (weak ,nonatomic) UIViewController<FFPageProtocol> * controller;
 
 
 
@@ -113,12 +113,12 @@
 
 - (void)addSubViewOrController:(id)sender{
     
-    if([sender isKindOfClass:[UIView class]]){
+    if ([sender isKindOfClass:[UIView class]]) {
         [self.scrollview addSubview:sender];
         return;
     }
     
-    if([sender isKindOfClass:[UIViewController class]]){
+    if ([sender isKindOfClass:[UIViewController class]]) {
         
         UIViewController *controller = sender;
         
@@ -140,7 +140,7 @@
 - (void)beginRefresh:(NSNotification *)notice{
     
     FFRereshView * refreshView = notice.object;
-    if(refreshView.scrollView == self.scrollview || self.controller.scrollview == refreshView.scrollView){
+    if (refreshView.scrollView == self.scrollview || self.controller.scrollview == refreshView.scrollView) {
         
         [self.dynamicAnimator removeAllBehaviors];
         self.inertialBehavior = nil;
@@ -155,7 +155,7 @@
 - (void)endRefresh:(NSNotification *)notice{
     
     FFRereshView * refreshView = notice.object;
-    if(refreshView.scrollView == self.scrollview || self.controller.scrollview == refreshView.scrollView){
+    if (refreshView.scrollView == self.scrollview || self.controller.scrollview == refreshView.scrollView) {
         
         [self.dynamicAnimator removeAllBehaviors];
         self.inertialBehavior = nil;
@@ -168,7 +168,7 @@
 
 }
 
-- (void)updateCurrentController:(id<FFPageProtocol>)controller{
+- (void)updateCurrentController:(UIViewController<FFPageProtocol> * _Nonnull)controller{
     
     self.controller = controller;
     [self.controller scrollview].scrollEnabled = NO;
@@ -183,21 +183,22 @@
 - (void)reloadHeightWithAnimation:(BOOL)animation completion:(void (^)(void))completion{
     
     self.isUpdateFrame = YES;
-    
+
     [UIView animateWithDuration:animation ? .3 :CGFLOAT_MIN animations:^{
         
-        [self viewDidLayoutSubviews];
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
         
     } completion:^(BOOL finished) {
         
-        if(finished && completion)completion();
+        if (finished && completion)completion();
     }];
 }
 
 
 - (void)panGestureAction:(UIPanGestureRecognizer *)sender{
     
-    if(sender.state == UIGestureRecognizerStateBegan){
+    if (sender.state == UIGestureRecognizerStateBegan) {
         self.isTouch = YES;
         self.isScroll = YES;
         
@@ -205,7 +206,7 @@
         
     }
     
-    else if(sender.state == UIGestureRecognizerStateChanged){
+    else if (sender.state == UIGestureRecognizerStateChanged) {
         
         CGFloat transY = [sender translationInView:self.view].y;//滚动方向y>0为向下
         [self transitionWithOffset:transY];
@@ -213,13 +214,13 @@
         [sender setTranslation:CGPointZero inView:self.view];
     }
     
-    else if(sender.state == UIGestureRecognizerStateEnded ){
+    else if (sender.state == UIGestureRecognizerStateEnded ) {
         
         self.isTouch = NO;
         
         CGPoint velocity = [sender velocityInView:self.view];
         
-        if(fabs(velocity.y) < self.minVelocity){
+        if (fabs(velocity.y) < self.minVelocity) {
             
             self.isScroll = NO;
             // 外部滚动视图的偏移量
@@ -268,7 +269,7 @@
             
             CGPoint inertialVelocity = [weakSelf.inertialBehavior linearVelocityForItem:item];
             
-            if(fabs(inertialVelocity.y) < self.minVelocity) weakSelf.isScroll = NO;
+            if (fabs(inertialVelocity.y) < self.minVelocity) weakSelf.isScroll = NO;
         };
         self.inertialBehavior = inertialBehavior;
         [self.dynamicAnimator addBehavior:inertialBehavior];
@@ -285,39 +286,39 @@
     CGFloat maxSubOffY = [self.controller scrollview].maxOffsetY;
     
     //手指向上
-    if(offset < 0){
+    if (offset < 0) {
         // *********优先判断子视图是否滚动到顶部
         //子视图未滚动到顶部
-        if(subOffY > 0){
+        if (subOffY > 0) {
             
             CGFloat final = subOffY - offset; //滚动多处的部分
             //多余的部分大于0 说明子视图还是没有到达顶部
-            if(final > 0){
+            if (final > 0) {
                 
-                if(final <= maxSubOffY){
+                if (final <= maxSubOffY) {
                     
                     subOffY = final;
                     [self  setSubScrollViewOffY:subOffY];
-                }else{
+                } else {
                     
 #pragma mark 上拉到到最大的时候开始bounce
                     //超过的部分做增量减少
                     
-                    if(self.isTouch || self.decelerateBehavior){
+                    if (self.isTouch || self.decelerateBehavior) {
                         
                         CGFloat bounceDelta = MAX(0, (self.maxBounceDistance - fabs(subOffY - maxSubOffY))/self.maxBounceDistance) * 0.5;
                         
                         subOffY  -= offset * bounceDelta;
                         [self  setSubScrollViewOffY:subOffY];
                         
-                    }else{
+                    } else {
                         
                         [self decelerateForScrollView:[self.controller scrollview] isTop:NO];
                     }
                     
                 }
                 
-            }else {
+            } else {
                 
                 //多余的部分小于等于0 说明子视图刚好滚动到顶部或者超过顶部
                 subOffY = 0;
@@ -327,42 +328,42 @@
             }
             
             
-        }else {
+        } else {
             
-            if(subOffY ==0){
+            if (subOffY ==0) {
                 
                 //********子视图已经滚动到顶部 滚动外部的
                 //滚动到顶部
-                if(outOffY < maxOffY){
+                if (outOffY < maxOffY) {
                     CGFloat final = outOffY - offset - maxOffY;
-                    if(final < 0){
+                    if (final < 0) {
                         outOffY -= offset;
                         [self setOutScrollViewOffY:outOffY];
                         
-                    }else{
+                    } else {
                         
                         outOffY = maxOffY;
                         [self setOutScrollViewOffY:outOffY];
                         [self transitionWithOffset:-final];
                     }
                     
-                }else {
+                } else {
                     
                     subOffY -= offset;
                     [self  setSubScrollViewOffY:subOffY];
                     
                 }
                 
-            }else{
+            } else {
                 
                 CGFloat final = subOffY - offset;
                 
-                if(final<0){
+                if (final<0) {
                     
                     subOffY = final;
                     [self setSubScrollViewOffY:subOffY];
                     
-                }else{
+                } else {
                     
                     subOffY = 0;
                     [self setSubScrollViewOffY:subOffY];
@@ -377,18 +378,18 @@
     }
     
     //手指向下
-    if(offset > 0){
+    if (offset > 0) {
         
-        if(subOffY > 0){
+        if (subOffY > 0) {
             
             CGFloat final = subOffY - offset;
             
-            if(final>0){
+            if (final>0) {
                 
                 subOffY = final;
                 [self  setSubScrollViewOffY:subOffY];
                 
-            }else{
+            } else {
                 
                 subOffY = 0;
                 [self  setSubScrollViewOffY:subOffY];
@@ -396,37 +397,37 @@
                 
             }
             
-        }else {
+        } else {
             
             
-            if(self.style == FFHomePageStyleSubRefresh){
+            if (self.style == FFHomePageStyleSubRefresh) {
                 
                 
-                if(outOffY >0){
+                if (outOffY >0) {
                     
                     CGFloat final = outOffY - offset;
                     
-                    if(final>0 && final < maxOffY){
+                    if (final>0 && final < maxOffY) {
                         
                         outOffY -= offset;
                         [self setOutScrollViewOffY:outOffY];
                         
-                    }else{
+                    } else {
                         
                         
-                        if(final > maxOffY){
+                        if (final > maxOffY) {
                             
                             outOffY = maxOffY;
                             [self setOutScrollViewOffY:outOffY];
                             [self transitionWithOffset:final - maxOffY];
                             
-                        }else if(final <0){
+                        } else if (final <0) {
                             
                             outOffY = 0;
                             [self setOutScrollViewOffY:outOffY];
                             [self transitionWithOffset:-final];
                             
-                        }else{
+                        } else {
                             
                             subOffY -= offset;
                             [self setSubScrollViewOffY:subOffY];
@@ -434,40 +435,40 @@
                         }
                     }
                     
-                }else{
+                } else {
                     
                     
 #pragma mark 内部下拉到到最大的时候开始bounce
                     
-                    if(self.isTouch || self.decelerateBehavior){
+                    if (self.isTouch || self.decelerateBehavior) {
                         
                         CGFloat bounceDelta = MAX(0, (self.maxBounceDistance - fabs(subOffY))/self.maxBounceDistance) * 0.5;
                         
                         subOffY  -= offset * bounceDelta;
                         [self setSubScrollViewOffY:subOffY];
-                    }else{
+                    } else {
                         
                         
                         [self decelerateForScrollView:[self.controller scrollview] isTop:YES];
                     }
                 }
                 
-            }else{
+            } else {
                 
-                if(outOffY >= -[self.controller scrollview].contentInset.top){
+                if (outOffY >= -[self.controller scrollview].contentInset.top) {
                     outOffY  -= offset;
                     [self  setOutScrollViewOffY:outOffY];
-                }else{
+                } else {
                     
 #pragma mark 外部下拉到到最大的时候开始bounce
                     
-                    if(self.isTouch || self.decelerateBehavior){
+                    if (self.isTouch || self.decelerateBehavior) {
                         
                         CGFloat bounceDelta = MAX(0, (self.maxBounceDistance - fabs(outOffY))/self.maxBounceDistance) * 0.5;
                         outOffY  -= offset * bounceDelta;
                         [self  setOutScrollViewOffY:outOffY];
                         
-                    }else{
+                    } else {
                         
                         [self decelerateForScrollView:self.scrollview isTop:YES];
                     }
@@ -488,7 +489,7 @@
 
 - (void)decelerateForScrollView:(UIScrollView *)scrollView isTop:(BOOL)isTop{
     
-    if(self.decelerateBehavior)return;
+    if (self.decelerateBehavior)return;
     
     CGPoint inertialVelocity = [self.inertialBehavior linearVelocityForItem:[self.inertialBehavior.items lastObject]];//惯性结束时的速度
     [self.dynamicAnimator removeBehavior:self.inertialBehavior];
@@ -506,7 +507,7 @@
         
         CGPoint decelerateVelocity = [weakSelf.decelerateBehavior linearVelocityForItem:item];
         
-        if(fabs(decelerateVelocity.y) < self.minVelocity){
+        if (fabs(decelerateVelocity.y) < self.minVelocity) {
             
             [weakSelf.dynamicAnimator removeBehavior:weakSelf.decelerateBehavior];
             weakSelf.decelerateBehavior = nil;
@@ -531,12 +532,12 @@
     
     
     //下拉减速结束的时候 最终位置没有到达零界点 不执行回弹
-    if(isTop && !scrollView.isReachTop) return;
+    if (isTop && !scrollView.isReachTop) return;
     //上拉减速结束的时候 最终位置没有到达零界点 不执行回弹
-    if(!isTop && !scrollView.isReachBottom) return;
+    if (!isTop && !scrollView.isReachBottom) return;
     
     
-    if(self.bounceBehavior) return;
+    if (self.bounceBehavior) return;
     
     FFDynamicItem *item = [[FFDynamicItem alloc] init];
     item.center = scrollView.contentOffset;
@@ -557,27 +558,27 @@
 
         }
         
-        if(weakSelf.scrollview == scrollView){
+        if (weakSelf.scrollview == scrollView) {
             
             
-            if(weakSelf.style == FFHomePageStyleHeadEnlarge){
+            if (weakSelf.style == FFHomePageStyleHeadEnlarge) {
                 
                 CGRect frame = CGRectMake(0, 0, CGRectGetWidth(weakSelf.headViewController.view.bounds), weakSelf.headHeight);
                 
                 
-                if(scrollView.contentOffset.y < 0){
+                if (scrollView.contentOffset.y < 0) {
                     frame = CGRectMake(0, roundf(scrollView.contentOffset.y), CGRectGetWidth(frame), weakSelf.headHeight - roundf(scrollView.contentOffset.y));
                 }
                 
-                if(!CGRectEqualToRect(weakSelf.headViewController.view.frame, frame))weakSelf.headViewController.view.frame = frame;
+                if (!CGRectEqualToRect(weakSelf.headViewController.view.frame, frame))weakSelf.headViewController.view.frame = frame;
             }
             
             return ;
         }
         
-        if([weakSelf.controller scrollview] == scrollView){
+        if ([weakSelf.controller scrollview] == scrollView) {
             
-            if([self.controller respondsToSelector:@selector(conentOffsetDidChanged:)]){
+            if ([self.controller respondsToSelector:@selector(conentOffsetDidChanged:)]) {
                 
                 [self.controller conentOffsetDidChanged:[self.controller scrollview].contentOffset];
             }
@@ -596,11 +597,11 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:FFHomeScrollViewContentOffsetChangedNotice object:self.scrollview userInfo:@{@"contentOffset":NSStringFromCGPoint(self.scrollview.contentOffset)}];
     
-    if(self.style == FFHomePageStyleHeadEnlarge){
+    if (self.style == FFHomePageStyleHeadEnlarge) {
         
         CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.headViewController.view.bounds), self.headHeight);
         
-        if(offY < 0){
+        if (offY < 0) {
             frame = CGRectMake(0, roundf(offY), CGRectGetWidth(frame), self.headHeight - roundf(offY));
         }
         self.headViewController.view.frame = frame;
@@ -611,7 +612,7 @@
     [self.controller scrollview].contentOffset =  CGPointMake([self.controller scrollview].contentOffset.x, offY);
     
     
-    if([self.controller respondsToSelector:@selector(conentOffsetDidChanged:)]){
+    if ([self.controller respondsToSelector:@selector(conentOffsetDidChanged:)]) {
         
         [self.controller conentOffsetDidChanged:[self.controller scrollview].contentOffset];
     }
@@ -621,13 +622,13 @@
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
-    if(!CGRectEqualToRect(self.scrollview.frame, self.view.bounds) || self.isUpdateFrame){
+    if (!CGRectEqualToRect(self.scrollview.frame, self.view.bounds) || self.isUpdateFrame) {
         
 #warning 有可能本页面有tabbar 下一个页面没有引起页面错位
         
         CGFloat tabbarHeight = isFullScreen() ? 49 + 34 : 49;
         
-        if(fabs(CGRectGetHeight(self.scrollview.frame) - CGRectGetHeight(self.view.frame)) == tabbarHeight) return;
+        if (fabs(CGRectGetHeight(self.scrollview.frame) - CGRectGetHeight(self.view.frame)) == tabbarHeight) return;
         
         self.scrollview.frame = self.view.bounds;
         
@@ -653,7 +654,7 @@
 @synthesize scrollview = _scrollview;
 -(UIScrollView *)scrollview{
     
-    if(!_scrollview){
+    if (!_scrollview) {
         
         _scrollview = [[UIScrollView alloc]init];
         _scrollview.showsVerticalScrollIndicator = NO;
@@ -671,7 +672,7 @@
 
 - (UIDynamicAnimator *)dynamicAnimator{
     
-    if(!_dynamicAnimator){
+    if (!_dynamicAnimator) {
         _dynamicAnimator = [[UIDynamicAnimator alloc]initWithReferenceView:self.view];
     }
     
@@ -702,7 +703,7 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     
     
-    if(self.scrollview.isFFRefreshing || self.controller.scrollview.isFFRefreshing) return NO;
+    if (self.scrollview.isFFRefreshing || self.controller.scrollview.isFFRefreshing) return NO;
     
     CGPoint velocity = [(UIPanGestureRecognizer *)gestureRecognizer velocityInView:self.view];
     return fabs(velocity.y) > fabs(velocity.x);
