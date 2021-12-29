@@ -5,8 +5,8 @@
 //  Created by North on 2019/8/9.
 //  Copyright © 2019 North. All rights reserved.
 //
-#import "FFHomePageViewController.h"
-@interface FFHomePageViewController ()<UIGestureRecognizerDelegate>
+#import "FFAdapterViewController.h"
+@interface FFAdapterViewController ()<UIGestureRecognizerDelegate>
 
 /**
  当前分页中显示的控制器
@@ -65,7 +65,7 @@
 
 @end
 
-@implementation FFHomePageViewController
+@implementation FFAdapterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

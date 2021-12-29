@@ -25,7 +25,7 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl  *segmentdControl;
-@property (retain, nonatomic) FFHomePageViewController   *homePageViewController;
+@property (retain, nonatomic) FFAdapterViewController   *adapterViewController;
 @property (retain ,nonatomic) CategroyViewController     * categroyViewController;
 @property (retain, nonatomic) FFPageViewController       *pageViewController;
 
@@ -53,18 +53,18 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
     
     
     
-    self.homePageViewController = [[FFHomePageViewController alloc]init];
-    self.homePageViewController.style = self.segmentdControl.selectedSegmentIndex;;
-    self.homePageViewController.categroyHeight = 50;
-    self.homePageViewController.headHeight = 300;
-    self.homePageViewController.headViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HeadViewController"];
-    self.homePageViewController.categroyViewController = self.categroyViewController;
-    self.homePageViewController.pageViewController = self.pageViewController;
+    self.adapterViewController = [[FFAdapterViewController alloc]init];
+    self.adapterViewController.style = self.segmentdControl.selectedSegmentIndex;;
+    self.adapterViewController.categroyHeight = 50;
+    self.adapterViewController.headHeight = 300;
+    self.adapterViewController.headViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HeadViewController"];
+    self.adapterViewController.categroyViewController = self.categroyViewController;
+    self.adapterViewController.pageViewController = self.pageViewController;
     
     
-    [self addChildViewController:self.homePageViewController];
-    [self.contentView addSubview:self.homePageViewController.view];
-    [self.homePageViewController didMoveToParentViewController:self];
+    [self addChildViewController:self.adapterViewController];
+    [self.contentView addSubview:self.adapterViewController.view];
+    [self.adapterViewController didMoveToParentViewController:self];
     
     
     self.categroyViewController.pageMenu.delegate = self;
@@ -75,21 +75,21 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
 }
 - (IBAction)valueChangeAction:(UISegmentedControl *)sender {
     
-    self.homePageViewController.style = sender.selectedSegmentIndex;
+    self.adapterViewController.style = sender.selectedSegmentIndex;
     
     if(sender.selectedSegmentIndex == 1){
         
-        self.homePageViewController.scrollview.ff_header = [RefreshView initWithRefreshBlock:^{
+        self.adapterViewController.scrollview.ff_header = [RefreshView initWithRefreshBlock:^{
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.homePageViewController.scrollview.ff_header endRefresh];
+                [self.adapterViewController.scrollview.ff_header endRefresh];
             });
             
         }];
         
     } else {
         
-        self.homePageViewController.scrollview.ff_header = nil;
+        self.adapterViewController.scrollview.ff_header = nil;
     }
     
     
@@ -97,8 +97,8 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
 - (IBAction)headHeightAction:(id)sender {
     
     
-    self.homePageViewController.headHeight = randomBetween(100,500);
-    [self.homePageViewController reloadHeightWithAnimation:YES completion:nil];
+    self.adapterViewController.headHeight = randomBetween(100,500);
+    [self.adapterViewController reloadHeightWithAnimation:YES completion:nil];
     
 }
 
@@ -129,7 +129,7 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
 
 - (void)pageViewController:(FFPageViewController *)pageViewController currentPageChanged:(NSInteger)currentPage{
     
-    [self.homePageViewController updateCurrentController:self.pageViewController.currentController];
+    [self.adapterViewController updateCurrentController:self.pageViewController.currentController];
     
 }
 
@@ -137,7 +137,7 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
-    self.homePageViewController.view.frame = self.contentView.bounds;
+    self.adapterViewController.view.frame = self.contentView.bounds;
     
     
 }

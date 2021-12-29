@@ -11,7 +11,7 @@
 		717486F5235EDE5A002E078B /* FFDynamicItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 717486E9235EDE5A002E078B /* FFDynamicItem.m */; };
 		717486F6235EDE5A002E078B /* UIScrollView+FFPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 717486EA235EDE5A002E078B /* UIScrollView+FFPage.m */; };
 		717486F7235EDE5A002E078B /* FFPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717486EF235EDE5A002E078B /* FFPageViewController.m */; };
-		717486F8235EDE5A002E078B /* FFHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717486F0235EDE5A002E078B /* FFHomePageViewController.m */; };
+		717486F8235EDE5A002E078B /* FFAdapterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 717486F0235EDE5A002E078B /* FFAdapterViewController.m */; };
 		71C4E55E23598B5F00628CF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C4E55D23598B5F00628CF9 /* AppDelegate.m */; };
 		71C4E56423598B5F00628CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71C4E56223598B5F00628CF9 /* Main.storyboard */; };
 		71C4E56623598B6300628CF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C4E56523598B6300628CF9 /* Assets.xcassets */; };
@@ -37,9 +37,9 @@
 		717486EB235EDE5A002E078B /* FFDynamicItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDynamicItem.h; sourceTree = "<group>"; };
 		717486ED235EDE5A002E078B /* FFPageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPageProtocol.h; sourceTree = "<group>"; };
 		717486EF235EDE5A002E078B /* FFPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFPageViewController.m; sourceTree = "<group>"; };
-		717486F0235EDE5A002E078B /* FFHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHomePageViewController.m; sourceTree = "<group>"; };
+		717486F0235EDE5A002E078B /* FFAdapterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFAdapterViewController.m; sourceTree = "<group>"; };
 		717486F1235EDE5A002E078B /* FFPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPageViewController.h; sourceTree = "<group>"; };
-		717486F2235EDE5A002E078B /* FFHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFHomePageViewController.h; sourceTree = "<group>"; };
+		717486F2235EDE5A002E078B /* FFAdapterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFAdapterViewController.h; sourceTree = "<group>"; };
 		717486F3235EDE5A002E078B /* FFPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPage.h; sourceTree = "<group>"; };
 		71C4E55923598B5F00628CF9 /* FFPage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FFPage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C4E55C23598B5F00628CF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -120,9 +120,9 @@
 			isa = PBXGroup;
 			children = (
 				717486EF235EDE5A002E078B /* FFPageViewController.m */,
-				717486F0235EDE5A002E078B /* FFHomePageViewController.m */,
+				717486F0235EDE5A002E078B /* FFAdapterViewController.m */,
 				717486F1235EDE5A002E078B /* FFPageViewController.h */,
-				717486F2235EDE5A002E078B /* FFHomePageViewController.h */,
+				717486F2235EDE5A002E078B /* FFAdapterViewController.h */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -305,7 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				717486F8235EDE5A002E078B /* FFHomePageViewController.m in Sources */,
+				717486F8235EDE5A002E078B /* FFAdapterViewController.m in Sources */,
 				71EA437A235E95CD00D030DB /* RefreshView.m in Sources */,
 				717486F7235EDE5A002E078B /* FFPageViewController.m in Sources */,
 				71EA4371235DBEB400D030DB /* CategroyViewController.m in Sources */,

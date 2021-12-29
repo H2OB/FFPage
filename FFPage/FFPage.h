@@ -10,7 +10,7 @@
 #define FFPage_h
 
 #import "FFPageViewController.h"
-#import "FFHomePageViewController.h"
+#import "FFAdapterViewController.h"
 #import "FFDynamicItem.h"
 #import "UIScrollView+FFPage.h"
 #import "FFRereshView.h"

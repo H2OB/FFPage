@@ -19,7 +19,8 @@ typedef NS_ENUM(NSUInteger, FFHomePageStyle) {
 
 
 
-@interface FFHomePageViewController : UIViewController
+@interface FFAdapterViewController
+: UIViewController
 
 /**
  样式 默认头部放大
