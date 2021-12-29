@@ -86,34 +86,33 @@ static void *RefreshKey = @"RefreshKey";
     return fmax(0, self.contentSize.height - CGRectGetHeight(self.bounds)) + self.contentInset.bottom;
 }
 
-- (void)setHeader:(FFRereshView *)header{
+- (void)setFf_header:(FFRereshView *)ff_header{
     
-    if(header != self.header){
-        [self.header removeFromSuperview];
-        [self insertSubview:header atIndex:0];
-        objc_setAssociatedObject(self, FFHeaderRefreshKey, header, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if(ff_header != self.ff_header){
+        [self.ff_header removeFromSuperview];
+        [self insertSubview:ff_header atIndex:0];
+        objc_setAssociatedObject(self, FFHeaderRefreshKey, ff_header, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
 }
-- (FFRereshView *)header{
+- (FFRereshView *)ff_header{
     
     return objc_getAssociatedObject(self, FFHeaderRefreshKey);
 }
 
 
-- (void)setFooter:(FFRereshView *)footer{
+- (void)setFf_footer:(FFRereshView *)ff_footer {
     
-    if(footer != self.footer){
-        [self.footer removeFromSuperview];
-        footer.isFooter = YES;
-        [self insertSubview:footer atIndex:0];
-        objc_setAssociatedObject(self, FFFooterRefreshKey, footer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if(ff_footer != self.ff_footer){
+        [self.ff_footer removeFromSuperview];
+        ff_footer.isFooter = YES;
+        [self insertSubview:ff_footer atIndex:0];
+        objc_setAssociatedObject(self, FFFooterRefreshKey, ff_footer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    
-    
 }
 
-- (FFRereshView *)footer{
+
+- (FFRereshView *)ff_footer{
     
     return objc_getAssociatedObject(self, FFFooterRefreshKey);
 }

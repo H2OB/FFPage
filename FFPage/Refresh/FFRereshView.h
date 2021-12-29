@@ -34,6 +34,9 @@ typedef void(^FFRefreshBlock)(void);
 
 + (instancetype)initWithRefreshBlock:(FFRefreshBlock)block;
 
++ (instancetype)initWithTarget:(id)target
+                        action:(SEL)action;
+
 - (void)setUpSubView;
 
 - (CGFloat)refreshHeight;

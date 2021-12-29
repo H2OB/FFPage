@@ -63,9 +63,9 @@ typedef void(^TouchBlock)(BOOL isTouch);
 @property(assign ,nonatomic) BOOL isFFRefreshing;
 
 
-@property (retain ,nonatomic) FFRereshView * header;
+@property (retain ,nonatomic) FFRereshView * ff_header;
 
-@property (retain ,nonatomic) FFRereshView * footer;
+@property (retain ,nonatomic) FFRereshView * ff_footer;
 
 @end
 

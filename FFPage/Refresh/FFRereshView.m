@@ -22,6 +22,17 @@ static NSString *  superBounds = @"bounds";
 @property (copy ,nonatomic) FFRefreshBlock refreshBlock;
 
 /**
+ 对象
+ */
+@property (nonatomic) id target;
+
+/**
+ 方法
+ */
+@property (nonatomic) SEL action;
+
+
+/**
  物理动画容器
  */
 @property(nonatomic, strong) UIDynamicAnimator *dynamicAnimator;
@@ -53,6 +64,15 @@ static NSString *  superBounds = @"bounds";
     return view;
     
 }
+
++ (instancetype)initWithTarget:(id)target action:(SEL)action {
+    
+    FFRereshView * view = [[self alloc] init];
+    view.target = target;
+    view.action = action;
+    return view;
+}
+
 
 - (CGFloat)refreshHeight{
 
@@ -301,6 +321,7 @@ static NSString *  superBounds = @"bounds";
     
     self.status = FFRereshStatusRereshing;
     if (self.refreshBlock)self.refreshBlock();
+    if (self.target && self.action) [self.target performSelectorOnMainThread:self.action withObject:nil waitUntilDone:NO];
     
     //只有顶部刷新的时候才会强制滚动
     if(self.isFooter)return;
