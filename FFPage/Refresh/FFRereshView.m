@@ -325,7 +325,7 @@ static NSString *  superBounds = @"bounds";
     
     //只有顶部刷新的时候才会强制滚动
     if(self.isFooter)return;
-    self.scrollView.isFFRefreshing = YES;
+    self.scrollView.isAnimationing = YES;
    
     [[NSNotificationCenter defaultCenter] postNotificationName:FFPageBeginRefreshNotice object:self userInfo:nil];
     
@@ -353,7 +353,7 @@ static NSString *  superBounds = @"bounds";
         if (fabs(weakSelf.scrollView.contentOffset.y - targetOffY) < FLT_EPSILON) {
             [weakSelf.dynamicAnimator removeAllBehaviors];
             weakSelf.bounceBehavior = nil;
-            weakSelf.scrollView.isFFRefreshing = NO;
+            weakSelf.scrollView.isAnimationing = NO;
            
         }
     };
@@ -365,16 +365,18 @@ static NSString *  superBounds = @"bounds";
 
 - (void)endRefresh{
     
+    // 如果是普通状态直接返回
     if (self.status == FFRereshStatusNormal) return;
     
+    // 如果是正在刷新
     if (self.status == FFRereshStatusRereshing) {
+        // 将要结束刷新
         self.status = FFRereshStatusWillEndRefresh;
         [self endRefresh];
         return;
     }
     
     //交互中 不允许执行结束动画
-    
     if (self.scrollView.isTouch) return;
     
     //结束的目标点
@@ -385,17 +387,16 @@ static NSString *  superBounds = @"bounds";
         self.status = FFRereshStatusNormal;
         return;
     }
-    
-    
-    self.scrollView.isFFRefreshing = YES;
+
+    // 设置正在动画中
+    self.scrollView.isAnimationing = YES;
 
     [[NSNotificationCenter defaultCenter] postNotificationName:FFPageEndRefreshNotice object:self userInfo:nil];
     
-    CGFloat targetOffY = 0;
-    if(self.isFooter)targetOffY =maxOffY;
+    // 结束时回到的偏移量 ceil(maxOffY)防止maxoffy精度丢失
+    CGFloat targetOffY = self.isFooter ? ceil(maxOffY): 0;
     
     //删除所有物理行为
-    
     [self.dynamicAnimator removeAllBehaviors];
     self.bounceBehavior = nil;
 
@@ -403,8 +404,6 @@ static NSString *  superBounds = @"bounds";
     
     FFDynamicItem *item = [[FFDynamicItem alloc] init];
     item.center = self.scrollView.contentOffset;
-    
-    
     
     UIAttachmentBehavior *bounceBehavior = [[UIAttachmentBehavior alloc] initWithItem:item attachedToAnchor:CGPointMake(0, targetOffY)];
     bounceBehavior.length = 0;
@@ -417,7 +416,7 @@ static NSString *  superBounds = @"bounds";
         if (fabs(weakSelf.scrollView.contentOffset.y - targetOffY) < FLT_EPSILON) {
             [weakSelf.dynamicAnimator removeAllBehaviors];
             weakSelf.bounceBehavior = nil;
-            weakSelf.scrollView.isFFRefreshing = NO;
+            weakSelf.scrollView.isAnimationing = NO;
             weakSelf.status = FFRereshStatusNormal;
         }
     };

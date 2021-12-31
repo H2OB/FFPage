@@ -14,7 +14,7 @@ static void *TouchKey = @"touchKey";
 static void *BlockKey = @"blockKey";
 static void *FFHeaderRefreshKey = @"FFHeaderRefreshKey";
 static void *FFFooterRefreshKey = @"FFFooterRefreshKey";
-static void *RefreshKey = @"RefreshKey";
+static void *AnimationKey = @"AnimationKey";
 
 @implementation UIScrollView (FFPage)
 
@@ -119,14 +119,14 @@ static void *RefreshKey = @"RefreshKey";
 
 
 
-- (void)setIsFFRefreshing:(BOOL)isFFRefreshing{
+- (void)setIsAnimationing:(BOOL)isAnimationing{
     
-    objc_setAssociatedObject(self, RefreshKey, @(isFFRefreshing).stringValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, AnimationKey, @(isAnimationing).stringValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)isFFRefreshing{
+- (BOOL)isAnimationing{
     
-     return [objc_getAssociatedObject(self, RefreshKey) boolValue];
+     return [objc_getAssociatedObject(self, AnimationKey) boolValue];
 }
 
 

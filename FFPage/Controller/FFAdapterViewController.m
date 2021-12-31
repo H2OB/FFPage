@@ -703,7 +703,7 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     
     
-    if (self.scrollview.isFFRefreshing || self.controller.scrollview.isFFRefreshing) return NO;
+    if (self.scrollview.isAnimationing || self.controller.scrollview.isAnimationing) return NO;
     
     CGPoint velocity = [(UIPanGestureRecognizer *)gestureRecognizer velocityInView:self.view];
     return fabs(velocity.y) > fabs(velocity.x);

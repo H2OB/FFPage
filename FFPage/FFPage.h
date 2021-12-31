@@ -15,10 +15,10 @@
 #import "UIScrollView+FFPage.h"
 #import "FFRereshView.h"
 
-//开始刷新通知
-#define FFPageBeginRefreshNotice @"FFPageBeginRefreshNotice"
-//结束刷新通知
-#define FFPageEndRefreshNotice   @"FFPageEndRefreshNotice"
+//开始动画通知
+#define FFPageBeginRefreshNotice @"FFPageBeginAnimationNotice"
+//结束动画通知
+#define FFPageEndRefreshNotice   @"FFPageEndAnimationNotice"
 
 //滚动视图偏移量改变通知
 #define FFHomeScrollViewContentOffsetChangedNotice   @"FFHomeScrollViewContentOffsetChangedNotice"

@@ -60,7 +60,7 @@ typedef void(^TouchBlock)(BOOL isTouch);
 /**
  是否 正在结束/开始刷新 在此期间 禁止交互 避免页面弹跳
  */
-@property(assign ,nonatomic) BOOL isFFRefreshing;
+@property(assign ,nonatomic) BOOL isAnimationing;
 
 
 @property (retain ,nonatomic) FFRereshView * ff_header;

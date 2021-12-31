@@ -11,7 +11,7 @@
 #import "RefreshView.h"
 @interface PageSubViewController ()<FFPageProtocol>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (assign, nonatomic) NSInteger total;
 @end
 
 @implementation PageSubViewController
@@ -26,12 +26,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.total = 10;
     self.tableView.rowHeight = 100;
     
     self.tableView.ff_header = [RefreshView initWithRefreshBlock:^{
 
          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-
+             self.total = 10;
+             [self.tableView reloadData];
              [self.tableView.ff_header endRefresh];
 
          });
@@ -42,7 +44,8 @@
      self.tableView.ff_footer = [RefreshView initWithRefreshBlock:^{
 
          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-
+             self.total += 10;
+             [self.tableView reloadData];
              [self.tableView.ff_footer endRefresh];
 
          });
@@ -64,7 +67,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 50;
+    return self.total;
 }
 
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
