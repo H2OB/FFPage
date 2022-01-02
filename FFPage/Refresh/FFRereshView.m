@@ -19,7 +19,7 @@ static NSString *  superBounds = @"bounds";
 /**
  回调块
  */
-@property (copy ,nonatomic) FFRefreshBlock refreshBlock;
+@property (copy, nonatomic) FFRefreshBlock refreshBlock;
 
 /**
  对象

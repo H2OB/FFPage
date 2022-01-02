@@ -17,10 +17,10 @@
 		71C4E56623598B6300628CF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C4E56523598B6300628CF9 /* Assets.xcassets */; };
 		71C4E56923598B6300628CF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71C4E56723598B6300628CF9 /* LaunchScreen.storyboard */; };
 		71C4E56C23598B6300628CF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 71C4E56B23598B6300628CF9 /* main.m */; };
-		71EA4368235DBDFA00D030DB /* HomePageExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EA4367235DBDFA00D030DB /* HomePageExampleViewController.m */; };
+		71EA4368235DBDFA00D030DB /* PinExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EA4367235DBDFA00D030DB /* PinExampleViewController.m */; };
 		71EA436B235DBE0D00D030DB /* PageExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EA436A235DBE0D00D030DB /* PageExampleViewController.m */; };
 		71EA436E235DBEA600D030DB /* HeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EA436D235DBEA600D030DB /* HeadViewController.m */; };
-		71EA4371235DBEB400D030DB /* CategroyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EA4370235DBEB400D030DB /* CategroyViewController.m */; };
+		71EA4371235DBEB400D030DB /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EA4370235DBEB400D030DB /* MenuViewController.m */; };
 		71EA4377235DBED300D030DB /* PageSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EA4376235DBED300D030DB /* PageSubViewController.m */; };
 		71EA437A235E95CD00D030DB /* RefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71EA4379235E95CC00D030DB /* RefreshView.m */; };
 		BADF690E535D3F7191CF6F3C /* libPods-FFPageExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B42ACA11473C0CAFDECF3E /* libPods-FFPageExample.a */; };
@@ -49,14 +49,14 @@
 		71C4E56823598B6300628CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71C4E56A23598B6300628CF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71C4E56B23598B6300628CF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		71EA4366235DBDFA00D030DB /* HomePageExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageExampleViewController.h; sourceTree = "<group>"; };
-		71EA4367235DBDFA00D030DB /* HomePageExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageExampleViewController.m; sourceTree = "<group>"; };
+		71EA4366235DBDFA00D030DB /* PinExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PinExampleViewController.h; sourceTree = "<group>"; };
+		71EA4367235DBDFA00D030DB /* PinExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PinExampleViewController.m; sourceTree = "<group>"; };
 		71EA4369235DBE0D00D030DB /* PageExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageExampleViewController.h; sourceTree = "<group>"; };
 		71EA436A235DBE0D00D030DB /* PageExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageExampleViewController.m; sourceTree = "<group>"; };
 		71EA436C235DBEA600D030DB /* HeadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadViewController.h; sourceTree = "<group>"; };
 		71EA436D235DBEA600D030DB /* HeadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeadViewController.m; sourceTree = "<group>"; };
-		71EA436F235DBEB400D030DB /* CategroyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategroyViewController.h; sourceTree = "<group>"; };
-		71EA4370235DBEB400D030DB /* CategroyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategroyViewController.m; sourceTree = "<group>"; };
+		71EA436F235DBEB400D030DB /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		71EA4370235DBEB400D030DB /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		71EA4375235DBED300D030DB /* PageSubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageSubViewController.h; sourceTree = "<group>"; };
 		71EA4376235DBED300D030DB /* PageSubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageSubViewController.m; sourceTree = "<group>"; };
 		71EA4378235E95CC00D030DB /* RefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshView.h; sourceTree = "<group>"; };
@@ -175,12 +175,12 @@
 			children = (
 				71EA4378235E95CC00D030DB /* RefreshView.h */,
 				71EA4379235E95CC00D030DB /* RefreshView.m */,
-				71EA4366235DBDFA00D030DB /* HomePageExampleViewController.h */,
-				71EA4367235DBDFA00D030DB /* HomePageExampleViewController.m */,
+				71EA4366235DBDFA00D030DB /* PinExampleViewController.h */,
+				71EA4367235DBDFA00D030DB /* PinExampleViewController.m */,
 				71EA436C235DBEA600D030DB /* HeadViewController.h */,
 				71EA436D235DBEA600D030DB /* HeadViewController.m */,
-				71EA436F235DBEB400D030DB /* CategroyViewController.h */,
-				71EA4370235DBEB400D030DB /* CategroyViewController.m */,
+				71EA436F235DBEB400D030DB /* MenuViewController.h */,
+				71EA4370235DBEB400D030DB /* MenuViewController.m */,
 				71EA4375235DBED300D030DB /* PageSubViewController.h */,
 				71EA4376235DBED300D030DB /* PageSubViewController.m */,
 			);
@@ -308,10 +308,10 @@
 				717486F8235EDE5A002E078B /* FFAdapterViewController.m in Sources */,
 				71EA437A235E95CD00D030DB /* RefreshView.m in Sources */,
 				717486F7235EDE5A002E078B /* FFPageViewController.m in Sources */,
-				71EA4371235DBEB400D030DB /* CategroyViewController.m in Sources */,
+				71EA4371235DBEB400D030DB /* MenuViewController.m in Sources */,
 				71EA4377235DBED300D030DB /* PageSubViewController.m in Sources */,
 				717486F4235EDE5A002E078B /* FFRereshView.m in Sources */,
-				71EA4368235DBDFA00D030DB /* HomePageExampleViewController.m in Sources */,
+				71EA4368235DBDFA00D030DB /* PinExampleViewController.m in Sources */,
 				71C4E56C23598B6300628CF9 /* main.m in Sources */,
 				717486F5235EDE5A002E078B /* FFDynamicItem.m in Sources */,
 				71EA436E235DBEA600D030DB /* HeadViewController.m in Sources */,

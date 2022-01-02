@@ -9,7 +9,7 @@
 #import "FFPageViewController.h"
 
 
-NS_INLINE CGRect frameForPage(FFPageViewController *controller ,NSInteger page){
+NS_INLINE CGRect frameForPage(FFPageViewController *controller, NSInteger page){
     
     CGFloat x = controller.scrollDirection != ScrollDirectionVertical?page * CGRectGetWidth(controller.scrollview.frame):0;
     CGFloat y = controller.scrollDirection != ScrollDirectionVertical?0:page * CGRectGetHeight(controller.scrollview.frame);
@@ -33,18 +33,18 @@ NS_INLINE NSInteger pageFormOffset(UIScrollView *scrollView){
 /**
  缓存
  */
-@property (strong ,nonatomic) NSMapTable * cacheMaps;
+@property (strong, nonatomic) NSMapTable * cacheMaps;
 
 /**
  存储页数的数组
  用于简单实现LRU算法
  */
-@property (strong ,nonatomic) NSMutableArray * pagesArray;
+@property (strong, nonatomic) NSMutableArray * pagesArray;
 
 /**
- 用户开始拖拽钱的便宜量
+ 用户开始拖拽钱的偏移量
  */
-@property (assign ,nonatomic) CGPoint startOffset;
+@property (assign, nonatomic) CGPoint startOffset;
 
 
 
@@ -57,7 +57,7 @@ NS_INLINE NSInteger pageFormOffset(UIScrollView *scrollView){
 /**
  计时器 保证runloop不退出
  */
-@property (retain ,nonatomic) NSTimer * timer ;
+@property (retain, nonatomic) NSTimer * timer ;
 
 
 

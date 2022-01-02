@@ -10,11 +10,11 @@
 #import "FFPage.h"
 #import "FFPageProtocol.h"
 
-typedef NS_ENUM(NSUInteger, FFHomePageStyle) {
+typedef NS_ENUM(NSUInteger, FFPageStyle) {
     
-    FFHomePageStyleHeadEnlarge = 0, //头部放大
-    FFHomePageStyleHeadRefresh, //头部整体刷新
-    FFHomePageStyleSubRefresh //子控制器刷新 默认
+    FFPageStyleHeadEnlarge = 0, //头部放大
+    FFPageStyleHeadRefresh, //头部整体刷新
+    FFPageStyleSubRefresh //子控制器刷新 默认
 };
 
 
@@ -25,45 +25,45 @@ typedef NS_ENUM(NSUInteger, FFHomePageStyle) {
 /**
  样式 默认头部放大
  */
-@property (assign ,nonatomic) FFHomePageStyle style;
+@property (assign, nonatomic) FFPageStyle style;
 
 /**
  忽略上方间距 如果需要躲避导航条 传导航条高度
  Tips:躲避导航条指视图跟导航条有重叠才传值
  */
-@property (assign ,nonatomic) CGFloat ignoreTopSpeace;
+@property (assign, nonatomic) CGFloat ignoreTopSpeace;
 
 /**
  上方head高度
  */
-@property (assign ,nonatomic) CGFloat headHeight;
+@property (assign, nonatomic) CGFloat headHeight;
 
 /**
  选项栏高度
  */
-@property (assign ,nonatomic) CGFloat categroyHeight;
+@property (assign, nonatomic) CGFloat menuHeight;
 
 /**
  头部控制器
  */
-@property (retain ,nonatomic ,nullable) UIViewController *headViewController;
+@property (retain, nonatomic, nonnull) UIViewController *headViewController;
 
 /**
- 选项栏控制器
+ 控制器  悬浮的就是这个控制器
  */
-@property (retain ,nonatomic ,nullable) UIViewController *categroyViewController;
+@property (retain, nonatomic, nonnull) UIViewController *menuViewController;
 
 
 /**
  分页控制器
  */
-@property (retain ,nonatomic ,nonnull) UIViewController *pageViewController;
+@property (retain, nonatomic, nonnull) UIViewController *pageViewController;
 
 
 /**
  可上下滚动的滚动视图
  */
-@property (readonly ,nonatomic) UIScrollView * _Nonnull scrollview;
+@property (readonly, nonatomic) UIScrollView * _Nonnull scrollview;
 
 
 /**
@@ -75,12 +75,12 @@ typedef NS_ENUM(NSUInteger, FFHomePageStyle) {
 
 
 /**
- 刷新 headHeight/categroyHeight之后 调用
+ 刷新 headHeight/menuHeight之后 调用
  
  @param animation 是否动画
  @param completion 完成回调
  */
-- (void)reloadHeightWithAnimation:(BOOL)animation completion:(void(^_Nullable)(void))completion;
+- (void)updateHeightWithAnimation:(BOOL)animation completion:(void(^_Nullable)(void))completion;
 
 
 /**

@@ -24,13 +24,13 @@ typedef void(^FFRefreshBlock)(void);
 
 @interface FFRereshView : UIView
 
-@property (assign ,nonatomic) FFRereshStatus status;
+@property (assign, nonatomic) FFRereshStatus status;
 
-@property (assign ,nonatomic) CGFloat percent;
+@property (assign, nonatomic) CGFloat percent;
 
-@property (weak ,nonatomic) UIScrollView * scrollView;
+@property (weak, nonatomic) UIScrollView * scrollView;
 
-@property (assign ,nonatomic) BOOL isFooter;
+@property (assign, nonatomic) BOOL isFooter;
 
 + (instancetype)initWithRefreshBlock:(FFRefreshBlock)block;
 

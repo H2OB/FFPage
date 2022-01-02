@@ -10,7 +10,7 @@
 
 @interface RefreshView ()
 
-@property (retain ,nonatomic) UIActivityIndicatorView * indicatorView;
+@property (retain, nonatomic) UIActivityIndicatorView * indicatorView;
 
 @end
 

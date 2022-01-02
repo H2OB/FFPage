@@ -1,18 +1,18 @@
 //
-//  CategroyViewController.m
+//  MenuViewController.m
 //  FFPageExample
 //
 //  Created by North on 2019/10/21.
 //  Copyright © 2019 North. All rights reserved.
 //
 
-#import "CategroyViewController.h"
+#import "MenuViewController.h"
 
-@interface CategroyViewController ()
+@interface MenuViewController ()
 
 @end
 
-@implementation CategroyViewController
+@implementation MenuViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

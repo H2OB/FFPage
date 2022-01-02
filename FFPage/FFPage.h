@@ -21,7 +21,7 @@
 #define FFPageEndRefreshNotice   @"FFPageEndAnimationNotice"
 
 //滚动视图偏移量改变通知
-#define FFHomeScrollViewContentOffsetChangedNotice   @"FFHomeScrollViewContentOffsetChangedNotice"
+#define FFAdapterContentOffsetChangedNotice   @"FFAdapterContentOffsetChangedNotice"
 
 //判断是否是全面屏
 NS_INLINE BOOL isFullScreen() {

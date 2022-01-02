@@ -1,5 +1,5 @@
 //
-//  HomePageExampleViewController.h
+//  MenuViewController.h
 //  FFPageExample
 //
 //  Created by North on 2019/10/21.
@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SPPageMenu.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HomePageExampleViewController : UIViewController
+@interface MenuViewController : UIViewController
+@property (weak, nonatomic) IBOutlet SPPageMenu *pageMenu;
 
 @end
 

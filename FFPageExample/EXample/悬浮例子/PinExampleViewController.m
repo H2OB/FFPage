@@ -1,18 +1,19 @@
 //
-//  HomePageExampleViewController.m
+//  PinExampleViewController.m
 //  FFPageExample
 //
 //  Created by North on 2019/10/21.
 //  Copyright © 2019 North. All rights reserved.
 //
 
-#import "HomePageExampleViewController.h"
+#import "PinExampleViewController.h"
 #import "FFPage.h"
-#import "CategroyViewController.h"
+#import "HeadViewController.h"
+#import "MenuViewController.h"
 #import "RefreshView.h"
 
 
-NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
+NS_INLINE NSUInteger randomBetween(NSUInteger begin,  NSUInteger end){
     
     NSUInteger value = arc4random() % end + begin;
     if(value > end) value -= begin;
@@ -21,12 +22,15 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
 }
 
 
-@interface HomePageExampleViewController ()<FFPageViewControllerDelegate,SPPageMenuDelegate>
+@interface PinExampleViewController ()<FFPageViewControllerDelegate,SPPageMenuDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl  *segmentdControl;
 @property (retain, nonatomic) FFAdapterViewController   *adapterViewController;
-@property (retain ,nonatomic) CategroyViewController     * categroyViewController;
+
+
+@property (retain, nonatomic) HeadViewController     * headViewController;
+@property (retain, nonatomic) MenuViewController     * menuViewController;
 @property (retain, nonatomic) FFPageViewController       *pageViewController;
 
 
@@ -34,7 +38,7 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
 
 @end
 
-@implementation HomePageExampleViewController
+@implementation PinExampleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,7 +48,9 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
 
 - (void)setUpView{
     
-    self.categroyViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CategroyViewController"];
+    self.headViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HeadViewController"];
+    
+    self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuViewController"];
     
     self.pageViewController = [[FFPageViewController alloc]init];
     self.pageViewController.delegate = self;
@@ -52,13 +58,20 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
     self.pageViewController.maxPages = 10;
     
     
-    
+    // 初始化
     self.adapterViewController = [[FFAdapterViewController alloc]init];
-    self.adapterViewController.style = self.segmentdControl.selectedSegmentIndex;;
-    self.adapterViewController.categroyHeight = 50;
+    // 设置样式
+    self.adapterViewController.style = self.segmentdControl.selectedSegmentIndex;
+    // 设置头部视图高度
     self.adapterViewController.headHeight = 300;
-    self.adapterViewController.headViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HeadViewController"];
-    self.adapterViewController.categroyViewController = self.categroyViewController;
+    // 设置菜单/分类控制器视图高度
+    self.adapterViewController.menuHeight = 50;
+    
+    // 设置头部控制器
+    self.adapterViewController.headViewController = self.headViewController;
+    // 设置菜单/分类控制器
+    self.adapterViewController.menuViewController = self.menuViewController;
+    // 设置底部分页控制器
     self.adapterViewController.pageViewController = self.pageViewController;
     
     
@@ -66,12 +79,9 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
     [self.contentView addSubview:self.adapterViewController.view];
     [self.adapterViewController didMoveToParentViewController:self];
     
-    
-    self.categroyViewController.pageMenu.delegate = self;
-    self.categroyViewController.pageMenu.bridgeScrollView = self.pageViewController.scrollview;
-    
-    
-    
+    self.menuViewController.pageMenu.delegate = self;
+    self.menuViewController.pageMenu.bridgeScrollView = self.pageViewController.scrollview;
+
 }
 - (IBAction)valueChangeAction:(UISegmentedControl *)sender {
     
@@ -98,7 +108,7 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
     
     
     self.adapterViewController.headHeight = randomBetween(100,500);
-    [self.adapterViewController reloadHeightWithAnimation:YES completion:nil];
+    [self.adapterViewController updateHeightWithAnimation:YES completion:nil];
     
 }
 
@@ -115,7 +125,7 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
 
 - (NSUInteger)totalPagesOfpageViewController:(FFPageViewController *)pageViewConteoller{
     
-    return self.categroyViewController.pageMenu.numberOfItems;
+    return self.menuViewController.pageMenu.numberOfItems;
 }
 
 - (UIViewController *)pageViewController:(FFPageViewController *)pageViewConteoller controllerForPage:(NSInteger)page{
@@ -129,7 +139,7 @@ NS_INLINE NSUInteger randomBetween(NSUInteger begin , NSUInteger end){
 
 - (void)pageViewController:(FFPageViewController *)pageViewController currentPageChanged:(NSInteger)currentPage{
     
-    [self.adapterViewController updateCurrentController:self.pageViewController.currentController];
+    [self.adapterViewController updateCurrentController:(UIViewController<FFPageProtocol> *)self.pageViewController.currentController];
     
 }
 

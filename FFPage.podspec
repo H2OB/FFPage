@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "FFPage"
-  s.version      = "2.2.0"
+  s.version      = "3.0.0"
   s.summary      = "可悬浮/放大/刷新的个人页面"
 
   # This description is used to generate tags and improve search results.

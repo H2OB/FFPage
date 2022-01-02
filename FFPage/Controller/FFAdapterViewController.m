@@ -11,14 +11,13 @@
 /**
  当前分页中显示的控制器
  */
-@property (weak ,nonatomic) UIViewController<FFPageProtocol> * controller;
-
+@property (weak, nonatomic) UIViewController<FFPageProtocol> * controller;
 
 
 /**
  是否更新位置
  */
-@property (assign ,nonatomic) BOOL isUpdateFrame;
+@property (assign, nonatomic) BOOL isUpdateFrame;
 
 
 /**
@@ -86,7 +85,7 @@
     panGesture.delegate = self;
     [self.view addGestureRecognizer:panGesture];
     
-   
+    
     
 }
 
@@ -94,38 +93,28 @@
     
     [self.scrollview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.childViewControllers makeObjectsPerformSelector:@selector(removeFromParentViewController)];
-        
+    
     NSAssert(self.headViewController != nil, @"请设置headViewController");
     
-    [self addSubViewOrController:self.headViewController];
-
-    
-    NSAssert(self.categroyViewController != nil, @"请设置categroyViewController");
-    
-    [self addSubViewOrController:self.categroyViewController];
+    [self addSubController:self.headViewController];
     
     
-    NSAssert(self.pageViewController != nil, @"请设置categroyViewController或者tabView");
+    NSAssert(self.menuViewController != nil, @"请设置menuViewController");
     
-    [self addSubViewOrController:self.pageViewController];
+    [self addSubController:self.menuViewController];
+    
+    
+    NSAssert(self.pageViewController != nil, @"请设置pageViewController");
+    
+    [self addSubController:self.pageViewController];
     
 }
 
-- (void)addSubViewOrController:(id)sender{
+- (void)addSubController:(UIViewController *)controller{
     
-    if ([sender isKindOfClass:[UIView class]]) {
-        [self.scrollview addSubview:sender];
-        return;
-    }
-    
-    if ([sender isKindOfClass:[UIViewController class]]) {
-        
-        UIViewController *controller = sender;
-        
-        [self addChildViewController:controller];
-        [self.scrollview addSubview:controller.view];
-        [controller didMoveToParentViewController:self];
-    }
+    [self addChildViewController:controller];
+    [self.scrollview addSubview:controller.view];
+    [controller didMoveToParentViewController:self];
     
 }
 
@@ -165,7 +154,7 @@
         return;
     }
     
-
+    
 }
 
 - (void)updateCurrentController:(UIViewController<FFPageProtocol> * _Nonnull)controller{
@@ -180,10 +169,10 @@
     [self addSubViewControllers];
 }
 
-- (void)reloadHeightWithAnimation:(BOOL)animation completion:(void (^)(void))completion{
+- (void)updateHeightWithAnimation:(BOOL)animation completion:(void (^)(void))completion{
     
     self.isUpdateFrame = YES;
-
+    
     [UIView animateWithDuration:animation ? .3 :CGFLOAT_MIN animations:^{
         
         [self.view setNeedsLayout];
@@ -229,7 +218,7 @@
             CGFloat subOffY = [self.controller scrollview].contentOffset.y;
             // 子视图最大
             CGFloat maxSubOffY = self.scrollview.maxOffsetY;
-
+            
             // 子视图内容是否填满 影响向上滚动的回弹
             BOOL isSubFill = [self.controller scrollview].contentSize.height > [self.controller scrollview].bounds.size.height;
             
@@ -299,6 +288,7 @@
                     
                     subOffY = final;
                     [self  setSubScrollViewOffY:subOffY];
+                    
                 } else {
                     
 #pragma mark 上拉到到最大的时候开始bounce
@@ -335,6 +325,7 @@
                 //********子视图已经滚动到顶部 滚动外部的
                 //滚动到顶部
                 if (outOffY < maxOffY) {
+                    
                     CGFloat final = outOffY - offset - maxOffY;
                     if (final < 0) {
                         outOffY -= offset;
@@ -400,7 +391,7 @@
         } else {
             
             
-            if (self.style == FFHomePageStyleSubRefresh) {
+            if (self.style == FFPageStyleSubRefresh) {
                 
                 
                 if (outOffY >0) {
@@ -446,6 +437,7 @@
                         
                         subOffY  -= offset * bounceDelta;
                         [self setSubScrollViewOffY:subOffY];
+                        
                     } else {
                         
                         
@@ -456,8 +448,10 @@
             } else {
                 
                 if (outOffY >= -[self.controller scrollview].contentInset.top) {
+                    
                     outOffY  -= offset;
                     [self  setOutScrollViewOffY:outOffY];
+                    
                 } else {
                     
 #pragma mark 外部下拉到到最大的时候开始bounce
@@ -480,9 +474,6 @@
         }
         
     }
-    
-    
-    
 }
 
 #pragma mark -  减速
@@ -547,6 +538,7 @@
     bounceBehavior.length = 0;
     bounceBehavior.damping = 1;
     bounceBehavior.frequency = 2;
+    
     __weak typeof(bounceBehavior) weakBounceBehavior = bounceBehavior;
     __weak typeof(self) weakSelf = self;
     bounceBehavior.action = ^{
@@ -555,13 +547,12 @@
             [weakSelf.dynamicAnimator removeBehavior:weakBounceBehavior];
             weakSelf.bounceBehavior = nil;
             weakSelf.isScroll = NO;
-
+            
         }
         
         if (weakSelf.scrollview == scrollView) {
             
-            
-            if (weakSelf.style == FFHomePageStyleHeadEnlarge) {
+            if (weakSelf.style == FFPageStyleHeadEnlarge) {
                 
                 CGRect frame = CGRectMake(0, 0, CGRectGetWidth(weakSelf.headViewController.view.bounds), weakSelf.headHeight);
                 
@@ -586,18 +577,19 @@
             return;
             
         }
-
+        
     };
     self.bounceBehavior = bounceBehavior;
     [self.dynamicAnimator addBehavior:bounceBehavior];
     
 }
 - (void)setOutScrollViewOffY:(CGFloat)offY{
+    
     self.scrollview.contentOffset = CGPointMake(self.scrollview.contentOffset.x, offY);
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:FFHomeScrollViewContentOffsetChangedNotice object:self.scrollview userInfo:@{@"contentOffset":NSStringFromCGPoint(self.scrollview.contentOffset)}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:FFAdapterContentOffsetChangedNotice object:self.scrollview userInfo:@{@"contentOffset":NSStringFromCGPoint(self.scrollview.contentOffset)}];
     
-    if (self.style == FFHomePageStyleHeadEnlarge) {
+    if (self.style == FFPageStyleHeadEnlarge) {
         
         CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.headViewController.view.bounds), self.headHeight);
         
@@ -609,8 +601,8 @@
 }
 
 - (void)setSubScrollViewOffY:(CGFloat)offY{
-    [self.controller scrollview].contentOffset =  CGPointMake([self.controller scrollview].contentOffset.x, offY);
     
+    [self.controller scrollview].contentOffset =  CGPointMake([self.controller scrollview].contentOffset.x, offY);
     
     if ([self.controller respondsToSelector:@selector(conentOffsetDidChanged:)]) {
         
@@ -634,11 +626,11 @@
         
         self.headViewController.view.frame = CGRectMake(0, 0, CGRectGetWidth(self.scrollview.frame), self.headHeight);
         
-        self.categroyViewController.view.frame = CGRectMake(0, self.headHeight, CGRectGetWidth(self.scrollview.frame), self.categroyHeight);
+        self.menuViewController.view.frame = CGRectMake(0, self.headHeight, CGRectGetWidth(self.scrollview.frame), self.menuHeight);
         
-        self.pageViewController.view.frame = CGRectMake(0, self.headHeight + self.categroyHeight, CGRectGetWidth(self.scrollview.frame), CGRectGetHeight(self.scrollview.frame) - self.categroyHeight - self.ignoreTopSpeace);
+        self.pageViewController.view.frame = CGRectMake(0, self.headHeight + self.menuHeight, CGRectGetWidth(self.scrollview.frame), CGRectGetHeight(self.scrollview.frame) - self.menuHeight - self.ignoreTopSpeace);
         
-        self.scrollview.contentSize = CGSizeMake(CGRectGetWidth(self.scrollview.frame), CGRectGetHeight(self.pageViewController.view.frame) + self.categroyHeight +self.headHeight);
+        self.scrollview.contentSize = CGSizeMake(CGRectGetWidth(self.scrollview.frame), CGRectGetHeight(self.pageViewController.view.frame) + self.menuHeight +self.headHeight);
         
         
         self.maxBounceDistance =  CGRectGetHeight(self.view.bounds) * .66;
@@ -684,7 +676,7 @@
     
     _isScroll = isScroll;
     self.scrollview.userInteractionEnabled = !isScroll;
-
+    
 }
 
 @synthesize isTouch = _isTouch;
@@ -702,7 +694,7 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     
-    
+    // 正在执行开始动画和结束动画中不允许交互
     if (self.scrollview.isAnimationing || self.controller.scrollview.isAnimationing) return NO;
     
     CGPoint velocity = [(UIPanGestureRecognizer *)gestureRecognizer velocityInView:self.view];

@@ -72,39 +72,39 @@ typedef NS_ENUM(NSUInteger, ScrollDirection) {
 /**
  滚动方向
  */
-@property (assign ,nonatomic) ScrollDirection scrollDirection;
+@property (assign, nonatomic) ScrollDirection scrollDirection;
 
 /**
  前/后预加载页数  总加载页数 = 2 * prePages + 1
  */
-@property (assign ,nonatomic) NSUInteger prePages;
+@property (assign, nonatomic) NSUInteger prePages;
 
 /**
  同时存在的控制器最大数量 超过这个数量 不常用的控制器将会被释放
  如果不设置值，默认不释放控制器
  如果设置值，应当大于 2 * prePages + 1
  */
-@property (assign ,nonatomic) NSUInteger maxPages;
+@property (assign, nonatomic) NSUInteger maxPages;
 
 /**
  默认显示页数
  */
-@property(assign ,nonatomic ) NSInteger defaultPage;
+@property(assign, nonatomic ) NSInteger defaultPage;
 
 /**
  滚动容器
  */
-@property(readonly ,nonatomic) UIScrollView * _Nonnull scrollview;
+@property(readonly, nonatomic) UIScrollView * _Nonnull scrollview;
 
 /**
  当前页数
  */
-@property(assign ,nonatomic ,readonly) NSInteger currentPage;
+@property(assign, nonatomic, readonly) NSInteger currentPage;
 
 /**
  当前控制器
  */
-@property(weak ,nonatomic ,readonly) UIViewController * _Nullable currentController;
+@property(weak, nonatomic, readonly) UIViewController * _Nullable currentController;
 
 /**
  滚动到第几页
@@ -120,7 +120,7 @@ typedef NS_ENUM(NSUInteger, ScrollDirection) {
 - (void)reloadData;
 
 /**
- 更新总数,不会删除已有控制器
+ 更新总数,不会对正在显示的控制器产生影响
  */
 - (void)updateTotalCount;
 
